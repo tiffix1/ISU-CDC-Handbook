@@ -48,6 +48,19 @@
 ## Team Formation and Registration
 ## Planning a Playbook and Basic Triaging
 ## Creating a Practice Network
+Practice makes perfect and nothing beats having your very own network to test out what you'll learn. Before you get started you will need to download a few applications; a hyper visor and an ISO file. A hypervisor is the platform that will run your virtualized network enviroment and an ISO file is often the format of choice for distributing operating systems. Below are some resources to get started, check with your school as some insitutions offer vmware or windows license to students for free.
+1. A hypervisor of your choice
+   - VirtualBox &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Virtualbox_logo.png/330px-Virtualbox_logo.png" width="50" height="50">
+     -  (Free)
+    
+   - Vmware Workstation  &nbsp;  <img src="https://static.wikia.nocookie.net/logopedia/images/6/62/VMware_Workstation_7_logo.png/revision/latest?cb=20140525014047" width="40" height="40">
+     -  (license required)
+       <br>
+   - HyperV &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/2048px-Windows_logo_-_2012.svg.png" width="40" height="40">
+     - (license required)
+       
+ 2. Download ISO files, ideally a Windows AD server, a Database, Ubuntu client and Windows client
+
 ## What to Practice
 ---
 # Preparing for the Competition
