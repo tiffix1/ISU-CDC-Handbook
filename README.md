@@ -92,10 +92,13 @@ Open Workstation and navigate to "File > New Virtual Machine" or click "ctrl + N
   <img src="https://i.imgur.com/13YSA4M.png">
   Click browse and select the ISO file you downloaded
   <img src="https://i.imgur.com/mJgeZDf.png">
-  Setup user account information
+  Naviagate through the wizard by creating a user account and appropriately name the host
   <img src="https://i.imgur.com/2v063EI.png">
-
-
+  The default 20 GB should be enough for your machine
+  <img src="https://i.imgur.com/Mb2hSO1.png">
+   Confirm all the information is correct and click "finish"
+  <img src="https://i.imgur.com/pSxO2aT.png">
+  
 ## What to Practice
 ---
 # Preparing for the Competition
