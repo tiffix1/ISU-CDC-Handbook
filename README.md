@@ -50,17 +50,20 @@
 ## Creating a Practice Network
 Practice makes perfect and nothing beats having your very own network to test out what you'll learn. Before you get started you will need to download a few applications; a hyper visor and an ISO file. A hypervisor is the platform that will run your virtualized network enviroment and an ISO file is often the format of choice for distributing operating systems. Below are some resources to get started, check with your school as some insitutions offer vmware or windows license to students for free.
 1. Install hypervisor of your choice
-   For this example we will be using Virtual Box since it is free for anyone. Simply navigate to the download link and follow the wizard for installation
-   - VirtualBox &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Virtualbox_logo.png/330px-Virtualbox_logo.png" width="50" height="50">
-     -  (Free)
-    
-   - Vmware Workstation  &nbsp;  <img src="https://static.wikia.nocookie.net/logopedia/images/6/62/VMware_Workstation_7_logo.png/revision/latest?cb=20140525014047" width="40" height="40">
-     -  (license required)
-       <br>
-   - HyperV &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/2048px-Windows_logo_-_2012.svg.png" width="40" height="40">
-     - (license required)
-       
- 3. Download ISO files, ideally a Windows AD server, Ubuntu Server 20.40, Ubuntu client and Windows client
+   For this example we will be using Vmware Workstation since the competition uses Vmware products to host the virtual network. Simply navigate to the download link, and follow the wizard for installation
+   - [Vmware Workstation](https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html.html.html)  &nbsp;  <img src="https://static.wikia.nocookie.net/logopedia/images/6/62/VMware_Workstation_7_logo.png/revision/latest?cb=20140525014047" width="40" height="40">
+     -  30 day free trial
+        <br>
+        
+   - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Virtualbox_logo.png/330px-Virtualbox_logo.png" width="50" height="50">
+     -  Free
+      
+   - [HyperV](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/2048px-Windows_logo_-_2012.svg.png" width="40" height="40">
+     - Windows license required
+
+ 3. Download ISO files 
+    - The CDCs scenarios vary but most CDCs have a Windows Server 2016 for Active Directory, Ubuntu Server 20.40 for a , Ubuntu client and Windows client
+    - https://ubuntu.com/download/alternative-downloads#other-images-and-mirrors
 
 ## What to Practice
 ---
