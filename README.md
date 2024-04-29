@@ -48,9 +48,9 @@
 ## Team Formation and Registration
 ## Planning a Playbook and Basic Triaging
 ## Creating a Practice Network
-Practice makes perfect and nothing beats having your very own network to test out what you'll learn. Before you get started you will need to download a few applications; a hyper visor and an ISO file. A hypervisor is the platform that will run your virtualized network enviroment and an ISO file is often the format of choice for distributing operating systems. Below are some resources to get started, check with your school as some insitutions offer vmware or windows license to students for free.
+Practice makes perfect and nothing beats having your very own network to test out what you'll learn. Before you get started you will need to download a few applications; a hyper visor and a few ISO files. A hypervisor is the platform that will run your virtualized network enviroment and an ISO file is often the format of choice for distributing operating systems. Below are some resources to get started, check with your school as some insitutions offer vmware or windows license to students for free. For this example we will be using Vmware Workstation since the competition uses Vmware products to host the virtual network. Simply navigate to the download link, and follow the wizard for installation. The CDCs scenarios vary but in the past most use a combination of older Ubuntu versions, Windows 10 and Windows Server 16. Moreover the scenarios usuallly include an active directory server, a database, a web application, and a client. This of course often changes but should provide you with a good foundation to practice with. This tutorial will focus on teaching you  network up and running as well as 
 1. Install hypervisor of your choice
-   For this example we will be using Vmware Workstation since the competition uses Vmware products to host the virtual network. Simply navigate to the download link, and follow the wizard for installation
+  
    - [Vmware Workstation](https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html.html.html)  &nbsp;  <img src="https://static.wikia.nocookie.net/logopedia/images/6/62/VMware_Workstation_7_logo.png/revision/latest?cb=20140525014047" width="40" height="40">
      -  30 day free trial
         <br>
@@ -62,7 +62,6 @@ Practice makes perfect and nothing beats having your very own network to test ou
      - Windows license required
 
 2. Download ISO files 
-    The CDCs scenarios vary but most CDCs have an Active Directory server, a Database,
 
    Essentials:
     - Ubuntu:
@@ -98,6 +97,8 @@ Open Workstation and navigate to "File > New Virtual Machine" or click "ctrl + N
   <img src="https://i.imgur.com/Mb2hSO1.png">
    Confirm all the information is correct and click "finish"
   <img src="https://i.imgur.com/pSxO2aT.png">
+  Follow the installation wizard to finish setting up the machine
+  <img src="https://i.imgur.com/DXxqPK3.png" width="639" height="401">
   
 ## What to Practice
 ---
