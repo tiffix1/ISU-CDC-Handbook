@@ -61,9 +61,40 @@ Practice makes perfect and nothing beats having your very own network to test ou
    - [HyperV](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/2048px-Windows_logo_-_2012.svg.png" width="40" height="40">
      - Windows license required
 
- 3. Download ISO files 
-    - The CDCs scenarios vary but most CDCs have a Windows Server 2016 for Active Directory, Ubuntu Server 20.40 for a , Ubuntu client and Windows client
-    - https://ubuntu.com/download/alternative-downloads#other-images-and-mirrors
+2. Download ISO files 
+    The CDCs scenarios vary but most CDCs have an Active Directory server, a Database,
+
+   Essentials:
+    - Ubuntu:
+      - [Server ISO Download](https://ubuntu.com/download/alternative-downloads#other-images-and-mirrors)
+      - [Desktop ISO Download](https://ubuntu.com/download/alternative-downloads)
+    - Windows:
+      - [Windows Server 2016 Evaluation ISO Download](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2016)
+      - [Windows 10 Evaluation ISO Download](https://info.microsoft.com/ww-landing-windows-10-enterprise.html) (Requires registration)
+      
+   Additional:
+    - Alma
+      - [ISO Download](https://mirrors.almalinux.org/isos.html)
+    - Pfsense
+      - [ISO Download](https://www.pfsense.org/download/)
+    - Kali
+      - [ISO Download](https://www.kali.org/get-kali/#kali-installer-images)
+    - Security Onion
+      - [ISO Download](https://download.securityonion.net/file/securityonion/securityonion-2.4.60-20240320.iso)
+              <br>
+      <br>
+
+4. Create Virtual Machines
+      <br>
+Open Workstation and navigate to "File > New Virtual Machine" or click "ctrl + N"
+  <img src="https://i.imgur.com/mHI6E7e.png">
+  Select typical and click "Next"
+  <img src="https://i.imgur.com/13YSA4M.png">
+  Click browse and select the ISO file you downloaded
+  <img src="https://i.imgur.com/mJgeZDf.png">
+  Setup user account information
+  <img src="https://i.imgur.com/2v063EI.png">
+
 
 ## What to Practice
 ---
