@@ -33,13 +33,27 @@
   - [Identifying Malicious Processes](#identifying-malicious-processes)
   - [Isolating an Affected Machine](#isolating-an-affected-machine)
   - 
----   
 
+---
 # What to Expect
-
+---
 ## What is the CDC
+The Cyber Defense Competition is a competition hosted by Iowa State university that is designed to give students a practical, educational experience that simulate the challenges faced within incident response efforts in cyber security. Each team is assembled of four to eight players and assume the role of the Blue Team and are assigned vulnerable machines. The teams must defend against the Red Team, which represents network attackers and are industry professionals from within the area. The machines are released to the students typically at noon the day before the competition and have until 8:00 am before the attack phase begins. From 8:00 am to 4:00 pm the teams must defend against the red team and keep their services up and running to avoid losing points. The White Team supervises the event, evaluates, and assigns points to each Blue Team based on the assessments from the Red and Green Teams. The Green Team embodies typical network users, contributing to the complexity of maintaining network security. The Blue Team that accumulates the highest score by the competition's conclusion will be declared the victor. For additional details, refer to https://cdc.iseage.org/ or https://cdc.pizza/ for details on the next CDC.
 ## Rules of Engagement
+For more details on the rules of engagement please visit https://docs.iseage.org/rules/v4.1/rules/index.html#blue-teams 
+1. Blue Teams must avoid engaging in offensive behavior when defending against red team.
+2. Blue Team members should refrain from sharing CDC credentials.
+3. Any software or program used must be open-source or provided by ISEAGE (free-trials on paid services are allowed).
+5. Access requirements for servers must be followed in order to receive points.
+6. Blue Teams must follow account management guidelines and only change user passwords with authorization.
+7. Submissions for usability checks and anomalies must be submitted before the dealine to receive points.
+8. Blue team must not be composed of 8 or more players
+9. Blue team must cooperate with white team requests
+
+
 ## Scenarios and Anomalies
+The CDCs scenarios vary but usuallly include an active directory server, a database, a web application, a client, an application that connects to the database, and some sort of custom application. Over the years the versions of operating systems have  changed but typically use a combination of older Ubuntu versions such as 16, 20.04, as well as Alma 8 or 9, Windows 10 and Windows Server 16. Moreover the scenarios 
+
 ## Red Team, Fire Drills, and Social Engineering
 ## Competition Network and Environment
 ---
@@ -48,7 +62,7 @@
 ## Team Formation and Registration
 ## Planning a Playbook and Basic Triaging
 ## Creating a Practice Network
-Practice makes perfect and nothing beats having your very own network to test out what you'll learn. Before you get started you will need to download a few applications; a hyper visor and a few ISO files. A hypervisor is the platform that will run your virtualized network enviroment and an ISO file is often the format of choice for distributing operating systems. Below are some resources to get started, check with your school as some insitutions offer vmware or windows license to students for free. For this example we will be using Vmware Workstation since the competition uses Vmware products to host the virtual network. Simply navigate to the download link, and follow the wizard for installation. The CDCs scenarios vary but in the past most use a combination of older Ubuntu versions, Windows 10 and Windows Server 16. Moreover the scenarios usuallly include an active directory server, a database, a web application, and a client. This of course often changes but should provide you with a good foundation to practice with. This tutorial will focus on teaching you  network up and running as well as 
+Practice makes perfect and nothing beats having your very own network to test out what you'll learn. Before you get started you will need to download a few applications; a hyper visor and a few ISO files. A hypervisor is the platform that will run your virtualized network enviroment and an ISO file is often the format of choice for distributing operating systems. Below are some resources to get started, check with your school as some insitutions offer vmware or windows license to students for free. For this example we will be using Vmware Workstation since the competition uses Vmware products to host the virtual network. Simply navigate to the download link, and follow the wizard for installation. This tutorial will focus on teaching you how to get your network up and running.
 1. Install hypervisor of your choice
   
    - [Vmware Workstation](https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html.html.html)  &nbsp;  <img src="https://static.wikia.nocookie.net/logopedia/images/6/62/VMware_Workstation_7_logo.png/revision/latest?cb=20140525014047" width="40" height="40">
