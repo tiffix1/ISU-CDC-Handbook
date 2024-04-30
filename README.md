@@ -64,6 +64,13 @@ The red team will use a variety of techniques to take down blue team flags inclu
 # Before the Competition
 ---
 ## Team Formation and Registration
+Teams should register at blue team at https://signup.iseage.org/ 
+<img src="https://i.imgur.com/yUPDzTZ.png" width="703" height="373">
+
+Be sure to rememember your credentials as they are necessary for accessing the network
+<img src="https://i.imgur.com/HFkKrIP.png" width="708" height="445">
+
+Create or join a team of up to eight players.
 
 ## Competition Network and Environment
 
