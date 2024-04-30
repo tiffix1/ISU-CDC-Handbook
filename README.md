@@ -72,7 +72,7 @@ After registering, the network can be accessed at https://vcenter.iseage.org/ be
  <img src="https://i.imgur.com/Grft5nU.png" width="697" height="297.5">
  
  Upon logging in your machines should be visable.
-  <img src=" https://i.imgur.com/G9W8mRu.png">
+  <img src="https://i.imgur.com/G9W8mRu.png" width="697" height="297.5">
 
  
 ## Planning a Playbook and Basic Triaging
