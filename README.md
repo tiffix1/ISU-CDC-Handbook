@@ -62,13 +62,18 @@ The red team will use a variety of techniques to take down blue team flags inclu
 
 ---
 # Before the Competition
+---
+## Team Formation and Registration
 
-## Team Formation and Registration#
-# Competition Network and Environment
+## Competition Network and Environment
 
 After registering, the network can be accessed at https://vcenter.iseage.org/ be sure you are connected CDC network otherwise you will not be able to access the server.
 <br>
- <img src="https://i.imgur.com/Grft5nU.png" width="750" height="401">
+ <img src="https://i.imgur.com/Grft5nU.png" width="697" height="297.5">
+ 
+ Upon logging in your machines should be visable.
+  <img src=" https://i.imgur.com/G9W8mRu.png">
+
  
 ## Planning a Playbook and Basic Triaging
 ## Creating a Practice Network
