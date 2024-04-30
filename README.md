@@ -71,9 +71,17 @@ After registering, the network can be accessed at https://vcenter.iseage.org/ be
 <br>
  <img src="https://i.imgur.com/Grft5nU.png" width="697" height="297.5">
  
- Upon logging in your machines should be visable.
+ Upon logging in your machines should be visable within the left panel. 
   <img src="https://i.imgur.com/G9W8mRu.png" width="697" height="297.5">
 
+  To open your virtual machine you must first turn on the machine by clicking the "Power On" play button
+  <img src="https://i.imgur.com/zBYkRnO.png">
+  
+  Then launch the virtual machine by click the "Launch Console" button
+  <img src="https://i.imgur.com/pnc2dOG.png">
+
+  Select Web Console and hit launch to open the machine in a new tab within your browser
+  <img src="https://i.imgur.com/xG0guhG.png">
  
 ## Planning a Playbook and Basic Triaging
 ## Creating a Practice Network
