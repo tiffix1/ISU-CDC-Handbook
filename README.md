@@ -516,36 +516,40 @@ Uncomment by removing the # at the beginning of the line if necessary.
 5. To configure your SSH settings it can be found in the `sshd_config` file within you `C:ProgramData\ssh` directory
    <img src="https://i.imgur.com/aBzSN2T.png">
  <br>
+ 
 ## Configuring a Firewall
 
-### Pfsense
-1. Use the tutorial from [Creating a Practice Network](#creating-a-practice-network), to a create a dedicated virtual machine for Pfsense; the default values should be adequate.
+### Pfsense Installation
+1. Use the tutorial from [Creating a Practice Network](#creating-a-practice-network), to a create a dedicated virtual machine for Pfsense; the default values should be adequate before you click finish click Customize Hardware
+
+2. Click memory and increase to 2 GB 
    
-3. To add a second adapter navigate to Vm > Settings and click Add
+3. You need an Network Adapter for WAN and LAN click Add.. to create a second adapter
 <img src="https://i.imgur.com/Sfojtap.png">
 
-4. Configure the settings to custom and select your network 
+4. Configure the settings of the Network Adapter to custom and select your network 
 <img src="https://i.imgur.com/Dj1ABxb.png">
 
-5. Start the VM accept the license and select ok when prompted for installation
+5. Click close and then click finish
+
+6. Start the VM, accept the license, and select ok when prompted for installation
  
-6. For partioning select Auto
-<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*FYf_G7BN_fG-rpRp_WDy0Q.png">
+7. For partioning select Auto UFS
+<img src="https://i.imgur.com/1iRpKA1.png">
 
-8. For ZFS Configurarion select Install Proceed with installation
-<img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*CFGQa2kzyuGSqk-1rmxm1Q.png">
+8. Partition the entrie disk
+<img src="https://i.imgur.com/32nAwyw.png">
 
-9. The select stripe - No redeundancy
-<img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*aOMr6IrzE555-a243D653g.png">
-   
-10.  Enter Ok
-<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*F6tBGUDbFDD8AHsdhzq5Og.png">
+9. For your partition scheme, select MBR DOS Partitions
+<img src="https://i.imgur.com/ba8vUnQ.png">
 
-11. Select yes
-<img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*Edzy-xrpQMvy0WYcOyWykw.png">
+10. Select the da0 MBR parition you just made and click finish
+<img src="https://i.imgur.com/Jrf4Mam.png">
 
-13. Finally, reboot your system
-<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*CCumgdGPPpVlDrQaXu-xbQ.png">
+11. Click Commit, click Reboot, and wait for pfsense to load
+
+### Pfsense Configuration
+
 
 ## Configuring an Intrusion Detection System
 ## Port Scanning
