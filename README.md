@@ -525,10 +525,10 @@ Uncomment by removing the # at the beginning of the line if necessary.
 2. Click memory and increase to 2 GB 
    
 3. You need an Network Adapter for WAN and LAN click Add.. to create a second adapter
-<img src="https://i.imgur.com/Sfojtap.png">
+<img src="https://i.imgur.com/Sfojtap.png" width="545" height="520">
 
 4. Configure the settings of the Network Adapter to custom and select your network such as VMnet5. **Make sure your other machines are connected to the same VMnet as well**
-<img src="https://i.imgur.com/Dj1ABxb.png">
+<img src="https://i.imgur.com/Dj1ABxb.png" width="545" height="520">
 
 5. Click close and then click finish
 
