@@ -520,7 +520,7 @@ Uncomment by removing the # at the beginning of the line if necessary.
 
 ### Pfsense
 1. Use the tutorial from [Creating a Practice Network](#creating-a-practice-network), to a create a dedicated virtual machine for Pfsense; the default values should be adequate.
-2. 
+2. Navigate to Vm > Settings
 ## Configuring an Intrusion Detection System
 ## Port Scanning
 Nmap is a tool that allows you to view what ports are open and exposed to the internet. This information is vital to an attacker as it can provde insight on how to gain foothold on your network . Mitigation tactics include hiding the hosts behind a firewall. A firewall is a security system that monitors and controls incoming and outgoing network traffic based on predefined security rules. One of the key functions of a firewall is to protect a network or system by blocking unauthorized access to certain ports and services. We will dive into setting this up later.
@@ -621,7 +621,7 @@ net user <username> <password>` NOTE: If domain user, append `/domain
 ```
 2. Audit important groups.
 ```powershell
-`net localgroup Administrators`
+net localgroup Administrators
 ```
 ```powershell
 net localgroup "Remote Desktop Users"
