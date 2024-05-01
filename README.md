@@ -17,7 +17,7 @@
   - [Scanning for vulnerabilities](#scanning-for-vulnerabilities)
   - [Changing Default Passwords](#changing-default-passwords)
   - [Configuring Active Directory](#configuring-active-directory)
-  - [Enabling SSH on port 22](#enabling-SSH-on-port-22)
+  - [Enabling SSH on port 22](#enabling-ssh-on-port-22)
   - [Configuring a Firewall](#configuring-a-firewall)
   - [Configuring VLAN](#configuring-vlan)
   - [Configuring an Intrusion Detection System](#configuring-an-intrusion-detection-system)
@@ -297,6 +297,50 @@ You will be prompt to enter your current password followed by being asked to ent
 <img src="https://itslinuxfoss.com/wp-content/uploads/2023/02/image-995.png">
 
 ## Configuring Active Directory
+ ###  Powershell
+Using powershell to join hosts to the domain can be efficiently especially for tasks that involve automation and scripting. PowerShell provides cmdlets specifically designed for managing Active Directory and performing domain join operations. This provides a more straightforward approach in setting up the AD server however may vary slightly depending on 
+Here's how you can set up AD and join hosts to the domain using PowerShell:
+
+#### Setting up Active Directory:
+
+1. Press Windows + R to open the run dialog and type `powershell`
+ <img src="https://i.imgur.com/7lJhgAb.png">  
+2. Enter Crtrl+Shift+Enter to run as administrator
+   
+4. Use the `Install-WindowsFeature` cmdlet to install the Active Directory Domain Services role:
+
+       Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
+
+5. Use the `Install-ADDSForest` cmdlet to promote the server to a domain controller:
+
+       Install-ADDSForest -DomainName "isucdc.com" -DomainNetbiosName "ISUCDC" -ForestMode "WinThreshold" -DomainMode "WinThreshold" -InstallDns -Force
+
+6. Use the `Set-ADDirectoryServicesRestoreModePassword` cmdlet to set the Directory Services Restore Mode (DSRM) password:
+
+       Set-ADDirectoryServicesRestoreModePassword -NewPassword (ConvertTo-SecureString -AsPlainText "YourDSRMPassword" -Force)     
+
+7. After promoting the server to a domain controller, restart the server to complete the process.
+
+8. Joining Hosts to Active Directory:
+
+1. **Joining Windows Hosts**:
+   - Use the `Add-Computer` cmdlet to join a Windows host to the domain:
+     ```powershell
+     Add-Computer -DomainName "isucdc.com" -Credential Get-Credential
+     ```
+
+2. **Joining Linux Hosts**:
+   - Install the necessary PowerShell modules for managing Linux systems (e.g., `PowerShellGet`, `PackageManagement`).
+   - Join the Linux host to the domain using the `Join-ADComputer` cmdlet:
+     ```powershell
+     Join-ADComputer -Server "DC1.isucdc.com" -Credential (Get-Credential) -Name "LinuxHost01"
+     ```
+
+3. **Verify Domain Join**:
+   - Use PowerShell commands to verify the domain join status on both Windows and Linux hosts.
+
+
+
 ## Enabling SSH on port 22
 SSH other wise known as the secure shell allows a user a secure way to remotely access a system and is often required for linux host within the CDC
 
