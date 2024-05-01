@@ -402,18 +402,25 @@ Linux Hosts:
 
 ### Bulk user, organizational unit, and group creation
 Within the Active directory folder of the github repo there are exists a Powershell script to mass import users as well as a spreadsheet that you can use as a template to fill with your own users
+
 1. Download the folder onto your Windows server
 <img src="https://activedirectorypro.com/wp-content/uploads/2022/09/powershell_scripts_c_drive.webp">
+
 2. First we will create an organizational unit, modify the ous.csv file to reflect your CDC user roles and save
 <img src="https://i.imgur.com/3y85x0M.png">
+
 4. From the start menu search Windows Powershell ISE, right click and run as administrator
+
 5. Click File > Open > create_ous.ps1 and run the file
 <img src="https://activedirectorypro.com/wp-content/uploads/2022/09/create-ous-powershell-1.webp">
+
 6. Repeat the same process for groups and users by updating the csv file and running the code
-7. Confirm the program ran succsessfully by running the following command in powershell:
-  ```powershell
+
+7. Confirm the program ran successfully by running the following command in powershell:
+
+ ```powershell
    Get-ADUser -filter * -Properties * | Select name, department, title | out-gridview
-````
+  ````
 
 ----
 ## Enabling SSH on port 22
