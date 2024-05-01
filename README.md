@@ -284,6 +284,14 @@ Choose a new and secure password unique to this host
 
 <img src="https://kb.mlml.sjsu.edu/uploads/images/gallery/2019-02-Feb/scaled-840-0/image-1550688271601.png">
 
+### Linux
+Open a terminal and type the following command
+      
+      passwd
+
+You will be prompt to enter your current password followed by being asked to enter a new password
+<img src="https://itslinuxfoss.com/wp-content/uploads/2023/02/image-995.png">
+
 ## Configuring Active Directory
 ## Configuring a Database
 ## Configuring a Firewall
