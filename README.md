@@ -527,7 +527,7 @@ Uncomment by removing the # at the beginning of the line if necessary.
 3. You need an Network Adapter for WAN and LAN click Add.. to create a second adapter
 <img src="https://i.imgur.com/Sfojtap.png">
 
-4. Configure the settings of the Network Adapter to custom and select your network 
+4. Configure the settings of the Network Adapter to custom and select your network such as VMnet5. **Make sure your other machines are connected to the same VMnet as well**
 <img src="https://i.imgur.com/Dj1ABxb.png">
 
 5. Click close and then click finish
@@ -547,10 +547,50 @@ Uncomment by removing the # at the beginning of the line if necessary.
 <img src="https://i.imgur.com/Jrf4Mam.png">
 
 11. Click Commit, click Reboot, and wait for pfsense to load
+<img src="https://i.imgur.com/7Jw8YGO.png">
 
 ### Pfsense Configuration
+If the default IP interferes with a router on your home network, the following instructions will teach you how to change your LAN interface IP
+1. In the terminal type 2 and hit enter to set interface IP address
+<img src="https://i.imgur.com/4UblpPY.png">
+
+2.  Type 2 to modify the LAN interface
+<img src="https://i.imgur.com/zOP1GBT.png">
+
+3.  Type n
+<img src="https://i.imgur.com/PIqw6di.png">
+
+4. Enter an IP within range that isn't used such as 192.168.229.1
+<img src="https://i.imgur.com/UzCG0n5.png">
+
+5. Type 24
+<img src="https://i.imgur.com/FprJ1MV.png">
+
+6. Hit enter to skip
+<img src="https://i.imgur.com/gGGRlLC.png">
+
+7. Type n to setting up IPv6 address on LAN via DHCP6
 
 
+8. Hit enter to skip
+<img src="https://i.imgur.com/lEODmFR.png">
+
+9. Type y to enable DHCP server on LAN
+
+  
+10. Enter xx.xx.xx.100 replace x with your range
+
+11. Enter xx.xx.xx.200 replace x with your range
+<img src="https://i.imgur.com/lEODmFR.png">
+
+12. Make note of the address provided as that is how you will access the web console, click enter to continue
+<img src="https://i.imgur.com/0udaLyW.png">
+
+
+13. Access your workstation machine and navigate the address provided  
+<img src="https://i.imgur.com/0udaLyW.png">
+
+  
 ## Configuring an Intrusion Detection System
 ## Port Scanning
 Nmap is a tool that allows you to view what ports are open and exposed to the internet. This information is vital to an attacker as it can provde insight on how to gain foothold on your network . Mitigation tactics include hiding the hosts behind a firewall. A firewall is a security system that monitors and controls incoming and outgoing network traffic based on predefined security rules. One of the key functions of a firewall is to protect a network or system by blocking unauthorized access to certain ports and services. We will dive into setting this up later.
