@@ -24,7 +24,6 @@
   - [Port Scanning](#port-scanning)
   - [System Hardening  for Linux](#system-hardening-for-linux)
   - [System Hardening for Windows](#system-hardening-for-windows)
-  - [System Hardening for Custom Applications](#system-hardening-for-custom-applications)
 - [Attack Phase of the Competition](#attack-phase-of-the-competition)
   - [Signs of an Attack](#signs-of-an-attack)
   - [Sniffing Network Traffic](#sniffing-network-traffic)
@@ -32,7 +31,7 @@
   - [Analyzing logs](#analyzing-logs)
   - [Identifying Malicious Processes](#identifying-malicious-processes)
   - [Isolating an Affected Machine](#isolating-an-affected-machine)
-  - 
+  
 
 ---
  # What to Expect
