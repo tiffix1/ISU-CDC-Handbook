@@ -520,7 +520,33 @@ Uncomment by removing the # at the beginning of the line if necessary.
 
 ### Pfsense
 1. Use the tutorial from [Creating a Practice Network](#creating-a-practice-network), to a create a dedicated virtual machine for Pfsense; the default values should be adequate.
-2. Navigate to Vm > Settings
+   
+3. To add a second adapter navigate to Vm > Settings and click Add
+<img src="https://i.imgur.com/Sfojtap.png">
+
+4. Configure the settings to custom and select your network 
+<img src="https://i.imgur.com/Dj1ABxb.png">
+
+5. Start the VM accept the license and select ok when prompted for installation
+ 
+6. For partioning select Auto
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*FYf_G7BN_fG-rpRp_WDy0Q.png">
+
+8. For ZFS Configurarion select Install Proceed with installation
+<img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*CFGQa2kzyuGSqk-1rmxm1Q.png">
+
+9. The select stripe - No redeundancy
+<img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*aOMr6IrzE555-a243D653g.png">
+   
+10.  Enter Ok
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*F6tBGUDbFDD8AHsdhzq5Og.png">
+
+11. Select yes
+<img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*Edzy-xrpQMvy0WYcOyWykw.png">
+
+13. Finally, reboot your system
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*CCumgdGPPpVlDrQaXu-xbQ.png">
+
 ## Configuring an Intrusion Detection System
 ## Port Scanning
 Nmap is a tool that allows you to view what ports are open and exposed to the internet. This information is vital to an attacker as it can provde insight on how to gain foothold on your network . Mitigation tactics include hiding the hosts behind a firewall. A firewall is a security system that monitors and controls incoming and outgoing network traffic based on predefined security rules. One of the key functions of a firewall is to protect a network or system by blocking unauthorized access to certain ports and services. We will dive into setting this up later.
@@ -597,6 +623,7 @@ find / -perm -2000 -print 2>/dev/null` for SGID
 ```
 
 10. Identify world-writable files and directories.
+
 For Directories:
 ```bash
 find / -type d \( -perm -g+w -or -perm -o+w \) -exec ls -adl {} \;
