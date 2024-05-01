@@ -17,7 +17,7 @@
   - [Scanning for vulnerabilities](#scanning-for-vulnerabilities)
   - [Changing Default Passwords](#changing-default-passwords)
   - [Configuring Active Directory](#configuring-active-directory)
-  - [Configuring a Database](#configuring-a-database)
+  - [Enabling SSH on port 22](#enabling-SSH-on-port-22)
   - [Configuring a Firewall](#configuring-a-firewall)
   - [Configuring VLAN](#configuring-vlan)
   - [Configuring an Intrusion Detection System](#configuring-an-intrusion-detection-system)
@@ -147,7 +147,7 @@ Open Workstation and navigate to "File > New Virtual Machine" or click "ctrl + N
 1. Active Direcory, familiarize yourself in setting up AD, creating users and group. Get comfortable with creating group policies and quickly changing passwords when needed.
 2. Become familiar with the standard procedure for configuring and maintaining the databases.
 3. Gain experience in networking by being able to configure ports, firewalls, IPs. Understand how the network is laid out and the different layers the services operate upon.
-4. Understand and practice setting up and managing a firewall, most asked question within the CDC usually are firewall related.
+4. Understand and practice setting up and managing a firewall, the most asked question within the CDC usually are firewall related.
 
 ---
 # Preparing for the Competition
@@ -297,7 +297,77 @@ You will be prompt to enter your current password followed by being asked to ent
 <img src="https://itslinuxfoss.com/wp-content/uploads/2023/02/image-995.png">
 
 ## Configuring Active Directory
-## Configuring a Database
+## Enabling SSH on port 22
+SSH other wise known as the secure shell allows a user a secure way to remotely access a system and is often required for linux host within the CDC
+
+### Alma Linux
+1. Install OpenSSH for your system
+
+        dnf install openssh-server openssh-clients
+
+2. Use systemctl to start or stop the SSH server
+
+        systemctl start sshd
+   
+        systemctl stop sshd
+
+3. To enable SSH to automatically starts at system boot
+
+         systemctl enable sshd
+
+  To Disable:
+
+         systemctl disable sshd
+
+4. To chech the SSH server status
+
+       systemctl status sshd
+
+5. To allow traffic on SSH through the firewall execute the following
+
+       firewall-cmd --zone=public --permanent --add-service=ssh
+       firewall-cmd --reload
+
+### Ubuntu
+1. Update the package index:
+
+        sudo apt update
+
+2. Install the SSH server package:
+
+        sudo apt install openssh-server
+   
+4. Once installed, the SSH service should start automatically. You can verify its status with:
+
+        sudo systemctl status ssh
+
+5. If the service is not running, you can start it with:
+
+        sudo systemctl start ssh
+
+6. To enable SSH to start automatically on boot, run:
+
+        sudo systemctl enable ssh
+   
+8. To configure or verify your SSH settings you can modify it using nano:
+   
+       sudo nano /etc/ssh/sshd_config
+
+9. Verify the port is set to 22 look for the line that specifies the port SSH listens on. It usually looks like this:
+
+        #Port 22
+
+Uncomment by removing the # at the beginning of the line if necessary.
+
+10. Enter Ctrl+S and Ctrl+X to save and exit
+11. Apply the changes by restaring the service
+
+        sudo systemctl restart sshd
+
+12. Test ssh works by opening a new terminal and attempting to access using the follow:
+
+          ssh username@xx.xx.xx -p 22
+
 ## Configuring a Firewall
 ## Configuring VLAN
 ## Configuring an Intrusion Detection System
