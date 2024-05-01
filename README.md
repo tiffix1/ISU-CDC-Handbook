@@ -149,6 +149,56 @@ Open Workstation and navigate to "File > New Virtual Machine" or click "ctrl + N
 # Preparing for the Competition
 
 ## Scanning for Vulnerabilities
+There a variety tools available for you to use that can streamline the process of hunting for vulnerabilities. One of which is OpenVas by Greenbone and within its trial provides you with a virtual machine that makes the set up process easy. Navigate to https://www.greenbone.net/en/testnow/#toggle-id-1 to begin downloading.
+1. Download the OVA file of the Greenbone Enterprise TRIAL.
+2. Launch Vmware
+4. In Vmware select File > Open… in the menu bar
+5. Select the OVA file of the appliance in the file system.
+  <img src="https://www.greenbone.net/wp-content/uploads/Import_VMware_1.png">
+6. Click import
+7. Login with the default credentials
+   
+   `username: admin`
+
+   `password: admin`
+   
+  <img src="https://www.greenbone.net/wp-content/uploads/First_Setup_Wizard_1.png" width="539" height="301">
+
+8. Select Yes and press Enter to open the Wizard.
+9. Select Yes and press Enter.
+10. Enter the user name of the web administrator.
+  <img src="https://www.greenbone.net/wp-content/uploads/First_Setup_Wizard_2.png">
+
+12. Enter the password of the web administrator twice.
+13. Select OK and press Enter.
+    
+    `→ The editor is opened.`
+    
+14. Press Enter to close the message.
+<img src="https://www.greenbone.net/wp-content/uploads/First_Setup_Wizard_3.png" width="539" height="301">
+
+16. Select Editor and press Enter.
+17. Enter the subscription key.
+18. Press ctrl + X.
+19. Press Y to save the changes.
+20. Press Enter.
+<img src="https://www.greenbone.net/wp-content/uploads/First_Setup_Wizard_4.png">
+
+22. The web interface can be accessed by opening the web browser.
+23. Enter the IP address of the appliance’s web interface.
+    
+     `Note: The IP address of the appliance’ s web interface can be displayed as follows:
+        During the login to the GOS administration menu
+        By selecting About and pressing Enter in the GOS administration menu`
+    
+24. Log in with the web administrator created during setup.
+    
+     ` → The web interface is opened.`
+
+<img src="https://www.greenbone.net/wp-content/uploads/Main_Dashboard_EN.png" width="539" height="301">
+
+ 
+
 ## Changing Default Passwords
 ## Configuring Active Directory
 ## Configuring a Database
