@@ -64,10 +64,10 @@ The red team will use a variety of techniques to take down blue team flags inclu
 ---
 ## Team Formation and Registration
 Teams should register at blue team at https://signup.iseage.org/ 
-<img src="https://i.imgur.com/yUPDzTZ.png" width="703" height="373">
+<img src="https://i.imgur.com/yUPDzTZ.png" width="587.5" height="310">
 
 Be sure to rememember your credentials as they are necessary for accessing the network
-<img src="https://i.imgur.com/HFkKrIP.png" width="708" height="445">
+<img src="https://i.imgur.com/HFkKrIP.png" width="587.5" height="310">
 
 Create or join a team of up to eight players.
 
@@ -76,19 +76,23 @@ Create or join a team of up to eight players.
 
 After registering, the network can be accessed at https://vcenter.iseage.org/ be sure you are connected CDC network otherwise you will not be able to access the server.
 <br>
- <img src="https://i.imgur.com/Grft5nU.png" width="697" height="297.5">
+ <img src="https://i.imgur.com/Grft5nU.png" width="672" height="310">
  
  Upon logging in your machines should be visable within the left panel. 
-  <img src="https://i.imgur.com/G9W8mRu.png" width="697" height="297.5">
+ 
+  <img src="https://i.imgur.com/G9W8mRu.png" width="672" height="310">
 
   To open your virtual machine you must first turn on the machine by clicking the "Power On" play button
-  <img src="https://i.imgur.com/zBYkRnO.png">
+  
+  <img src="https://i.imgur.com/zBYkRnO.png" width="315" height="84.5">
   
   Then launch the virtual machine by click the "Launch Console" button
-  <img src="https://i.imgur.com/pnc2dOG.png">
+  
+  <img src="https://i.imgur.com/pnc2dOG.png" width="315" height="84.5">
 
   Select Web Console and hit launch to open the machine in a new tab within your browser
-  <img src="https://i.imgur.com/xG0guhG.png">
+  
+  <img src="https://i.imgur.com/xG0guhG.png" width="377" height="181.5">
 
   ---
  
@@ -134,15 +138,15 @@ Practice makes perfect and nothing beats having your very own network to test ou
 Open Workstation and navigate to "File > New Virtual Machine" or click "ctrl + N"
   <img src="https://i.imgur.com/mHI6E7e.png">
   Select typical and click "Next"
-  <img src="https://i.imgur.com/13YSA4M.png">
+  <img src="https://i.imgur.com/13YSA4M.png" width=398 height=429>
   Click browse and select the ISO file you downloaded
-  <img src="https://i.imgur.com/mJgeZDf.png">
+  <img src="https://i.imgur.com/mJgeZDf.png" width=398 height=429>
   Navigate through the wizard by creating a user account and appropriately name the host
-  <img src="https://i.imgur.com/2v063EI.png">
+  <img src="https://i.imgur.com/2v063EI.png" width=398 height=429>
   The default 20 GB should be enough for your machine
-  <img src="https://i.imgur.com/Mb2hSO1.png">
+  <img src="https://i.imgur.com/Mb2hSO1.png" width=398 height=429>
    Confirm all the information is correct and click "finish"
-  <img src="https://i.imgur.com/pSxO2aT.png">
+  <img src="https://i.imgur.com/pSxO2aT.png" width=398 height=429>
   Follow the installation wizard to finish setting up the machine
   <img src="https://i.imgur.com/DXxqPK3.png" width="639" height="401">
   
