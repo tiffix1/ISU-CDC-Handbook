@@ -19,7 +19,6 @@
   - [Configuring Active Directory](#configuring-active-directory)
   - [Enabling SSH on port 22](#enabling-ssh-on-port-22)
   - [Configuring a Firewall](#configuring-a-firewall)
-  - [Configuring VLAN](#configuring-vlan)
   - [Configuring an Intrusion Detection System](#configuring-an-intrusion-detection-system)
   - [Port Scanning](#port-scanning)
   - [System Hardening  for Linux](#system-hardening-for-linux)
@@ -516,10 +515,12 @@ Uncomment by removing the # at the beginning of the line if necessary.
    ```
 5. To configure your SSH settings it can be found in the `sshd_config` file within you `C:ProgramData\ssh` directory
    <img src="https://i.imgur.com/aBzSN2T.png">
- 
-  
+ <br>
 ## Configuring a Firewall
-## Configuring VLAN
+
+### Pfsense
+1. Use the tutorial from [Creating a Practice Network](#creating-a-practice-network), to a create a dedicated virtual machine for Pfsense; the default values should be adequate.
+2. 
 ## Configuring an Intrusion Detection System
 ## Port Scanning
 Nmap is a tool that allows you to view what ports are open and exposed to the internet. This information is vital to an attacker as it can provde insight on how to gain foothold on your network . Mitigation tactics include hiding the hosts behind a firewall. A firewall is a security system that monitors and controls incoming and outgoing network traffic based on predefined security rules. One of the key functions of a firewall is to protect a network or system by blocking unauthorized access to certain ports and services. We will dive into setting this up later.
@@ -535,7 +536,8 @@ Installation for Linux:
 The only command you will likely need is nmap -a followed by either the host ip or ip range, this yeilds a detailed scan of the ports and services running on the machine.
 
     nmap -a XX.XX.XX.XX
-    
+ <br>
+ 
 ## System Hardening for Linux
 
 **Commands listed are not all-encompassing and are for a baseline only!**
@@ -608,7 +610,8 @@ For Files:
 ```bash 
 who
 ```
-    
+<br>
+
 ## System Hardening for Windows
 ---
 
