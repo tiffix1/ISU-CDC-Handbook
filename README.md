@@ -31,14 +31,15 @@
   - [Analyzing logs](#analyzing-logs)
   - [Identifying Malicious Processes](#identifying-malicious-processes)
   - [Isolating an Affected Machine](#isolating-an-affected-machine)
-  
+  <br>
+<br>
 
 ---
  # What to Expect
 ---
 ## What is the CDC
 The Cyber Defense Competition is a competition hosted by Iowa State university that is designed to give students a practical, educational experience that simulate the challenges faced within incident response efforts in cyber security. Each team is assembled of four to eight players and assume the role of the Blue Team and are assigned vulnerable machines. The teams must defend against the Red Team, which represents network attackers and are industry professionals from within the area. The machines are released to the students typically at noon the day before the competition and have until 8:00 am before the attack phase begins. From 8:00 am to 4:00 pm the teams must defend against the red team and keep their services up and running to avoid losing points. The White Team supervises the event, evaluates, and assigns points to each Blue Team based on the assessments from the Red and Green Teams. The Green Team embodies typical network users, contributing to the complexity of maintaining network security. The Blue Team that accumulates the highest score by the competition's conclusion will be declared the victor. For additional details, refer to https://cdc.iseage.org/ or https://cdc.pizza/ for details on the next CDC.
-
+<br>
 ## Rules of Engagement
 For more details on the rules of engagement please visit https://docs.iseage.org/rules/v4.1/rules/index.html#blue-teams 
 1. Blue Teams must avoid engaging in offensive behavior when defending against red team.
@@ -49,15 +50,17 @@ For more details on the rules of engagement please visit https://docs.iseage.org
 7. Submissions for usability checks and anomalies must be submitted before the dealine to receive points.
 8. Blue team must not be composed of 8 or more players
 9. Blue team must cooperate with white team requests
-
+<br>
 
 ## Scenarios and Anomalies
 The CDCs scenarios vary but usuallly include an active directory server, a database, a web application, a client, an application that connects to the database, and some sort of custom application. Over the years the versions of operating systems have  changed but typically use a combination of older Ubuntu versions such as 16, 20.04, as well as Alma 8 or 9, Windows 10 and Windows Server 16. Moreover, throughout the attack phase the green team leader releases anomolies which consists of a variety of tasks that teams can complete for additional points
+<br>
+
 
 ## Red Team, Fire Drills, and Social Engineering
 The red team will use a variety of techniques to take down blue team flags including traditional means of running scripts or tools against the machines as well as nontraditional means such as social engineering. Green team memebers as the end users must be able to access and interact with services and red team may attempt to impersonate the green team in attempt to gain leverage over their machines. Moreover, some red team members have used other creative means such as claiming they are a photographer taking pictures for the CDC event and end up stealing credentials. Blue teams must be prepared to handle any attack thrown at them as well as firedrills; once a firedrill is announced the blue teams must leave their computers as they are and exit the room. The red team at most can tap the space bar or wiggle a mouse but are not allowed go through or attack blue team members' personal devices.
-
-
+<br>
+<br>
 
 ---
 # Before the Competition
@@ -70,6 +73,7 @@ Be sure to rememember your credentials as they are necessary for accessing the n
 <img src="https://i.imgur.com/HFkKrIP.png" width="587.5" height="310">
 
 Create or join a team of up to eight players.
+<br>
 
 ---
 ## Competition Network and Environment
@@ -93,9 +97,9 @@ After registering, the network can be accessed at https://vcenter.iseage.org/ be
   Select Web Console and hit launch to open the machine in a new tab within your browser
   
   <img src="https://i.imgur.com/xG0guhG.png" width="377" height="181.5">
+<br>
 
   ---
- 
 ## Planning a Playbook and Basic Triaging
 ## Creating a Practice Network
 Practice makes perfect and nothing beats having your very own network to test out what you'll learn. Before you get started you will need to download a few applications; a hyper visor and a few ISO files. A hypervisor is the platform that will run your virtualized network enviroment and an ISO file is often the format of choice for distributing operating systems. Below are some resources to get started, check with your school as some insitutions offer vmware or windows license to students for free. For this example we will be using Vmware Workstation since the competition uses Vmware products to host the virtual network. Simply navigate to the download link, and follow the wizard for installation. This tutorial will focus on teaching you how to get your network up and running.
@@ -149,15 +153,20 @@ Open Workstation and navigate to "File > New Virtual Machine" or click "ctrl + N
   <img src="https://i.imgur.com/pSxO2aT.png" width=398 height=429>
   Follow the installation wizard to finish setting up the machine
   <img src="https://i.imgur.com/DXxqPK3.png" width="639" height="401">
-  
+  <br>
+
 ## What to Practice
 1. Active Direcory, familiarize yourself in setting up AD, creating users and group. Get comfortable with creating group policies and quickly changing passwords when needed.
 2. Become familiar with the standard procedure for configuring and maintaining the databases.
 3. Gain experience in networking by being able to configure ports, firewalls, IPs. Understand how the network is laid out and the different layers the services operate upon.
 4. Understand and practice setting up and managing a firewall, the most asked question within the CDC usually are firewall related.
+<br>
 
 ---
+
 # Preparing for the Competition
+
+---
 
 ## Scanning for Vulnerabilities
 There a variety tools available for you to use that can streamline the process of hunting for vulnerabilities.
@@ -321,6 +330,7 @@ Open a terminal and type the following command
 You will be prompt to enter your current password followed by being asked to enter a new password
 <img src="https://itslinuxfoss.com/wp-content/uploads/2023/02/image-995.png">
 
+<br>
 ---
 ## Configuring Active Directory
  ###  Powershell
@@ -347,23 +357,33 @@ Here's how you can set up AD and join hosts to the domain using PowerShell:
 
 8. After promoting the server to a domain controller, restart the server to complete the process.
 
-9. Joining Hosts to Active Directory:
+### Joining Hosts to Active Directory:
 
-1. **Joining Windows Hosts**:
+Joining Windows Hosts:
    - Use the `Add-Computer` cmdlet to join a Windows host to the domain:
      ```powershell
      Add-Computer -DomainName "isucdc.com" -Credential Get-Credential
      ```
-
-2. **Joining Linux Hosts**:
+Joining Linux Hosts:
    - Install the necessary PowerShell modules for managing Linux systems (e.g., `PowerShellGet`, `PackageManagement`).
    - Join the Linux host to the domain using the `Join-ADComputer` cmdlet:
      ```powershell
      Join-ADComputer -Server "DC1.isucdc.com" -Credential (Get-Credential) -Name "LinuxHost01"
      ```
 
-3. **Verify Domain Join**:
-   - Use PowerShell commands to verify the domain join status on both Windows and Linux hosts.
+### Verify Domain Join**:
+Windows Hosts:
+  - You can use the `Get-ComputerInfo` cmdlet to retrieve information about the domain status on Windows hosts:
+    ```powershell
+    Get-ComputerInfo -Property 'DomainJoined'
+    ```
+  - This command will return whether the computer is joined (`True`) or not joined (`False`).
+
+Linux Hosts:
+  - Realm list is a native command that displays all the realms that the system in joined to including AD
+    ```bash
+    realm list
+    ```
 
 ----
 ## Enabling SSH on port 22
@@ -376,7 +396,7 @@ SSH other wise known as the secure shell allows a user a secure way to remotely 
   dnf install openssh-server openssh-clients
 ```
 
-1. Use systemctl to start or stop the SSH server
+2. Use systemctl to start or stop the SSH server
  ```bash
   systemctl start sshd
 ```
@@ -384,7 +404,7 @@ SSH other wise known as the secure shell allows a user a secure way to remotely 
   systemctl stop sshd
 ```
 
-2. To enable SSH to automatically starts at system boot
+3. To enable SSH to automatically starts at system boot
 
 ```bash
   systemctl enable sshd
@@ -426,18 +446,18 @@ SSH other wise known as the secure shell allows a user a secure way to remotely 
 
         sudo systemctl enable ssh
    
-8. To configure or verify your SSH settings you can modify it using nano:
+7. To configure or verify your SSH settings you can modify it using nano:
    
        sudo nano /etc/ssh/sshd_config
 
-9. Verify the port is set to 22 look for the line that specifies the port SSH listens on. It usually looks like this:
+8. Verify the port is set to 22 look for the line that specifies the port SSH listens on. It usually looks like this:
 
         #Port 22
 
 Uncomment by removing the # at the beginning of the line if necessary.
 
-10. Enter Ctrl+S and Ctrl+X to save and exit
-11. Apply the changes by restaring the service
+9. Enter Ctrl+S and Ctrl+X to save and exit
+10. Apply the changes by restaring the service
 
         sudo systemctl restart sshd
 
