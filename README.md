@@ -145,6 +145,11 @@ Open Workstation and navigate to "File > New Virtual Machine" or click "ctrl + N
   <img src="https://i.imgur.com/DXxqPK3.png" width="639" height="401">
   
 ## What to Practice
+1. Active Direcory, familiarize yourself in setting up AD, creating users and group. Get comfortable with creating group policies and quickly changing passwords when needed.
+2. Become familiar with the standard procedure for configuring and maintaining the databases.
+3. Gain experience in networking by being able to configure ports, firewalls, IPs. Understand how the network is laid out and the different layers the services operate upon.
+4. Understand and practice setting up and managing a firewall, most asked question within the CDC usually are firewall related.
+
 ---
 # Preparing for the Competition
 
