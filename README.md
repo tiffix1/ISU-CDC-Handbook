@@ -464,44 +464,44 @@ SSH other wise known as the secure shell allows a user a secure way to remotely 
 
 ### Ubuntu
 1. Update the package index:
-
-        sudo apt update
-
-2. Install the SSH server package:
-
-        sudo apt install openssh-server
-   
+  ```bash
+  sudo apt update
+  ```
+3. Install the SSH server package:
+ ```bash
+ sudo apt install openssh-server
+ ```  
 4. Once installed, the SSH service should start automatically. You can verify its status with:
-
-        sudo systemctl status ssh
-
+ ```bash
+ sudo systemctl status ssh
+```
 5. If the service is not running, you can start it with:
-
-        sudo systemctl start ssh
-
+ ```bash
+ sudo systemctl start ssh
+```
 6. To enable SSH to start automatically on boot, run:
-
-        sudo systemctl enable ssh
-   
+ ```bash
+  sudo systemctl enable ssh
+   ```
 7. To configure or verify your SSH settings you can modify it using nano:
-   
-       sudo nano /etc/ssh/sshd_config
-
+  ```bash  
+  sudo nano /etc/ssh/sshd_config
+```
 8. Verify the port is set to 22 look for the line that specifies the port SSH listens on. It usually looks like this:
-
-        #Port 22
-
+ ```bash
+ Port 22
+ ```
 Uncomment by removing the # at the beginning of the line if necessary.
 
 9. Enter Ctrl+S and Ctrl+X to save and exit.
 10. Apply the changes by restaring the service:
-
-        sudo systemctl restart sshd
-
+ ```bash
+ sudo systemctl restart sshd
+```
 12. Test ssh works by opening a new terminal and attempting to access using the follow:
-
-          ssh username@xx.xx.xx -p 22
-
+ ```bash
+ ssh username@xx.xx.xx -p 22
+```
 ### Windows
 1. Search powershell in Start Menu
 2. Right-click and run as administrator
@@ -528,17 +528,152 @@ Installation for Windows:
 Download Nmap Visit the official Nmap website: https://nmap.org/download.html
 
 Installation for Linux: 
-
-    sudo apt-get update
-    sudo apt-get install nmap
-
+ ```bash
+  sudo apt-get update
+  sudo apt-get install nmap
+ ```
 The only command you will likely need is nmap -a followed by either the host ip or ip range, this yeilds a detailed scan of the ports and services running on the machine.
 
     nmap -a XX.XX.XX.XX
     
 ## System Hardening for Linux
+
+**Commands listed are not all-encompassing and are for a baseline only!**
+
+1. Change **all** user passwords. *Yes, especially the credentials given to you!*
+ ```bash
+passwd username
+```
+2. Audit /etc/shadow for users with passwords set, or no password at all.
+```bash
+cat /etc/shadow
+```
+3. Remove all SSH keys present on the box.
+```bash
+find / -name authorized_keys 2> /dev/null
+```
+```bash
+find / -name id_rsa 2> /dev/null
+```
+4. Audit sudo access given to users.
+```bash
+cat /etc/sudoers
+```
+```bash
+cat /etc/sudoers.d/*
+```
+```bash
+getent group sudo | cut -d: -f4` (The *sudo* group is Debian, *wheel* is for RHEL
+```
+5. Audit /etc/passwd to check for account shells and UIDs.
+```bash
+cat /etc/passwd | grep :0:
+```
+```bash
+cat /etc/passwd | grep -v /bin/false | grep -v /sbin/nologin
+```
+6. Verify that there are not any non-standard cron jobs on the system.
+```bash
+cat /etc/cron.d/*
+```
+```bash
+for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -l; done
+```
+7. Stop services that are not critical to the system or competition needs.
+```bash
+systemctl --type=service --state=active
+```
+```bash
+systemctl stop servicename
+```
+8. Identify SUID and SGID files. Cross-reference with https://gtfobins.github.io/ to narrow down malicous instances of SUID and SGID files.
+```bash
+find / -perm -4000 -print 2>/dev/null` for SUID
+```
+```bash
+find / -perm -2000 -print 2>/dev/null` for SGID
+```
+
+10. Identify world-writable files and directories.
+For Directories:
+```bash
+find / -type d \( -perm -g+w -or -perm -o+w \) -exec ls -adl {} \;
+```
+For Files:
+```bash
+    `find / ! -path "*/proc/*" -perm -2 -type f -print 2>/dev/null
+```
+
+12. Check who is currently logged into the machine.
+```bash 
+who
+```
+    
 ## System Hardening for Windows
 ---
+
+1. Change **all** user passwords. *Yes, especially the credentials given to you!*
+```powershell
+net user <username> <password>` NOTE: If domain user, append `/domain
+```
+2. Audit important groups.
+```powershell
+`net localgroup Administrators`
+```
+```powershell
+net localgroup "Remote Desktop Users"
+```
+```powershell
+net localgroup "Remote Management Users"`
+```
+
+3. Disable WinRM if not needed through powershell.
+```powershell 
+Disable-PSRemoting -Force
+```
+4. Check Windows Defender registry keys
+
+    `regedit.exe`  HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender
+
+5. Check for tasks set to run through the registry.
+
+    - HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+    - HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce
+    - HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServices
+    - HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce
+
+6. Check system and user startup folder.
+    
+    - User: C:\Users\USERNAME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\
+    - System: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\
+
+7. Audit scheduled tasks.
+```powershell
+schtasks
+```
+
+8. Check PowerShell Execution policy.
+```powershell
+Get-ExecutionPolicy
+```
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy Restricted -Scope LocalMachine
+```
+
+9. Check Windows Defender status.
+```powershell
+Get-MPComputerStatus
+```
+
+10. Audit SMB shares.
+```powershell
+net view \\127.0.0.1
+```
+
+11. Disable Guest account.
+```powershell
+net user guest /active no
+```
 # Attack Phase of the Competition
 ## Signs of an Attack
 ## Sniffing Network Traffic
