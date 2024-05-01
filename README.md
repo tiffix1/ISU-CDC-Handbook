@@ -290,9 +290,22 @@ Choose a new and secure password unique to this host
 ## Configuring VLAN
 ## Configuring an Intrusion Detection System
 ## Port Scanning
+Nmap is a tool that allows you to view what ports are open and exposed to the internet. This information is vital to an attacker as it can provde insight on how to gain foothold on your network . Mitigation tactics include hiding the hosts behind a firewall. A firewall is a security system that monitors and controls incoming and outgoing network traffic based on predefined security rules. One of the key functions of a firewall is to protect a network or system by blocking unauthorized access to certain ports and services. We will dive into setting this up later.
+
+Installation for Windows:
+Download Nmap Visit the official Nmap website: https://nmap.org/download.html
+
+Installation for Linux: 
+
+    sudo apt-get update
+    sudo apt-get install nmap
+
+The only command you will likely need is nmap -a followed by either the host ip or ip range, this yeilds a detailed scan of the ports and services running on the machine.
+
+    nmap -a XX.XX.XX.XX
+    
 ## System Hardening for Linux
 ## System Hardening for Windows
-## System Hardening for Custom Applications
 ---
 # Attack Phase of the Competition
 ## Signs of an Attack
