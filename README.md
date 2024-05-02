@@ -655,6 +655,15 @@ Requirements:
 <br>
 
 ## Configuring an Intrusion Detection System
+
+### Snort
+1. Follow the tutorial for [configuring a firewall](#configuring-a-firewall) to set up pfsense
+2. Navigate to System > Package Manager > Available Packages
+3. Type `snort` in the search box and click install
+4. Click confirm and wait for the package to install
+
+
+
 ## Port Scanning
 Nmap is a tool that allows you to view what ports are open and exposed to the internet. This information is vital to an attacker as it can provde insight on how to gain foothold on your network . Mitigation tactics include hiding the hosts behind a firewall. A firewall is a security system that monitors and controls incoming and outgoing network traffic based on predefined security rules. One of the key functions of a firewall is to protect a network or system by blocking unauthorized access to certain ports and services. 
 
