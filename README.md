@@ -590,10 +590,73 @@ If the default IP interferes with a router on your home network, the following i
 13. Access your workstation machine and navigate the address provided  
 <img src="https://i.imgur.com/0udaLyW.png">
 
-  
+14. The default credentials are `u: admin p: pfsense` 
+<img src="https://i.imgur.com/iQJ3z1Y.png">
+
+15. Change the password by click the link in the Warning notice
+<img src="https://i.imgur.com/zctvYdL.png">
+
+16. Navigate to Firewall > Rules > LAN as you can See Pfsense has some default rule set 
+<img src="https://i.imgur.com/w26gkFY.png">
+
+### Creating rules
+- Note If you're setting up rules for outbound traffic from your servers to the internet you'd also typically create these rules on the WAN interface, if you're setting up rules for traffic between hosts/serverson your local network, you'd create rules on the LAN interface. For this example, we will use a "www server".
+
+Requirements:
+  ```
+  WWW (192.168.229.129):
+    Allow incoming traffic on ports 80 and 443 for HTTP and HTTPS web access.
+    Allow incoming traffic on port 3389 (RDP) for administrative access.
+  ```
+
+**Allow incoming traffic on ports 80 and 443 for HTTP and HTTPS web access:***
+
+1. First begin by creating a seperator and name it www, this will help us keep track of the rule we made
+<img src="https://i.imgur.com/ZnPpCU9.png">
+
+2. Within the rules page click Add with the down arrow
+
+3. Set the following fields:
+    - Action: `Pass`
+    - Interface: `LAN`
+    - Address Family: `IPv4`
+    -  Protocol: `TCP/UDP` (choose the appropriate protocol)
+    -  Source: `Any`
+    -  Destination: `Address or Alias` Destination Address: `192.168.1.100`
+    -  Destination port range: From `HTTP (80)` To `HTTPS (443)`
+<img src="https://i.imgur.com/YS0vyew.png">
+
+4. Optionally, add description such as `Allow HTTP/S to www` and enable logging if needed
+   
+6. Click Save and Apply Changes.
+
+
+**Allow incoming traffic on port 3389 (RDP) for administrative access:**
+
+1. To Save some time we can copy the rule we just made and change the values
+
+2. Set the following fields:
+    - Action: `Pass`
+    - Interface: `LAN`
+    - Address Family: `IPv4`
+    -  Protocol: `TCP/UDP` (choose the appropriate protocol)
+    -  Source: `Any`
+    -  Destination: `Address or Alias` Destination Address: `192.168.1.100`
+    -  Destination port range: From `(other)` Custom `3389`
+<img src="https://i.imgur.com/lzzCEpB.png">
+
+4. Optionally, add description such as `Allow RDP to www` and enable logging if needed
+
+5. Click Save and Apply Changes.
+
+6. Your rules should then look like the following:
+ <img src="https://i.imgur.com/4k2zVbj.png">
+ 
+<br>
+
 ## Configuring an Intrusion Detection System
 ## Port Scanning
-Nmap is a tool that allows you to view what ports are open and exposed to the internet. This information is vital to an attacker as it can provde insight on how to gain foothold on your network . Mitigation tactics include hiding the hosts behind a firewall. A firewall is a security system that monitors and controls incoming and outgoing network traffic based on predefined security rules. One of the key functions of a firewall is to protect a network or system by blocking unauthorized access to certain ports and services. We will dive into setting this up later.
+Nmap is a tool that allows you to view what ports are open and exposed to the internet. This information is vital to an attacker as it can provde insight on how to gain foothold on your network . Mitigation tactics include hiding the hosts behind a firewall. A firewall is a security system that monitors and controls incoming and outgoing network traffic based on predefined security rules. One of the key functions of a firewall is to protect a network or system by blocking unauthorized access to certain ports and services. 
 
 Installation for Windows:
 Download Nmap Visit the official Nmap website: https://nmap.org/download.html
