@@ -24,12 +24,10 @@
   - [System Hardening  for Linux](#system-hardening-for-linux)
   - [System Hardening for Windows](#system-hardening-for-windows)
 - [Attack Phase of the Competition](#attack-phase-of-the-competition)
-  - [Signs of an Attack](#signs-of-an-attack)
   - [Sniffing Network Traffic](#sniffing-network-traffic)
   - [Analyzing logs](#analyzing-logs)
   - [Understanding Windows Event Viewer](#understanding-windows-event-viewer)
-  - [Identifying Malicious Processes](#identifying-malicious-processes)
-  - [Isolating an Affected Machine](#isolating-an-affected-machine)
+  - [Reporting](#reporting)
   <br>
 <br>
 
@@ -461,7 +459,7 @@ Within the Active directory folder of the github repo there are exists a Powersh
  ```powershell
    Get-ADUser -filter * -Properties * | Select name, department, title | out-gridview
   ````
-
+### Applying Group Policies
 ----
 ## Enabling SSH on port 22
 SSH other wise known as the secure shell allows a user a secure way to remotely access a system and is often required for linux host within the CDC
@@ -881,8 +879,11 @@ net view \\127.0.0.1
 ```powershell
 net user guest /active no
 ```
+
+---
 # Attack Phase of the Competition
-## Signs of an Attack
+---
+
 ## Sniffing Network Traffic
 conducting thorough traffic analysis, often referred to as “sniffing,” is crucial for detecting anomalous or potentially malicious data packets. This aids in identifying unauthorized access attempts or suspicious activities within the network. It empowers network administrators to uncover exploited network vulnerabilities and reconstruct cyber-attack scenarios for future security enhancements and historical incident analysis.
 
@@ -920,8 +921,30 @@ Here are some examples of suspcious activity:
  
 ## Analyzing logs
 In the context of system security, maintaining detailed logs is beneficial for identifying unsuccessful or potentially dubious login attempts, as well as unauthorized activities by users or processes. This enables system administrators to spot exploited weaknesses and reconstruct attack scenarios for future security updates and historical incident documentation.
-## Understanding Windows Event Viewer
+### Understanding Windows Event Viewer
+1. Type Windows + R and enter `eventvwr` to open the Windows Event Viewer
+<img src="https://i.imgur.com/5CwB4fi.png">
 
+2. The `Overview and Summary` page, provides a quick look at recent logs. Use the left toolbar to sort by log type and the right one to create custom views and filters for specific logs.
+<img src="https://i.imgur.com/URwalg5.png">
 
+3. Navigate to security events 
+<img src="https://i.imgur.com/bMwKoaO.png">
 
+4. In this example we are gonna filter for specific event regarding user logons. You can find other task IDs relevant to security at this [link](https://andreafortuna.org/2019/06/12/windows-security-event-logs-my-own-cheatsheet/)
+<img src="https://i.imgur.com/BCkHCVG.png">
 
+5. We are gonna filter this event further and focus on auditing specifically administrator logons 
+<img src="https://i.imgur.com/BCkHCVG.png">
+
+6.Within this result we see and unfamiliar IP address of origin as well as that they used NTLM to authenticate themselves within the system. The NTLM protocol is stores password within windows which introduces a security threat. Moreover, it has been replaced by Kerberos a more reliable solution that utilizes a centralized logon server
+<img src="https://i.imgur.com/Wc4HYQE.png">
+
+## Reporting
+1: Identify the security threat or incident. This could be an unauthorized access, data breach, malware attack, or any other form of cyber threat.
+
+2: Document all relevant information about the incident. This includes the time and date of the incident, the nature of the threat, the systems affected, and any potential data that may have been compromised, as well as screenshots and diagrams. If you do not fully understand the details of the attack, describe to the best of your abilities the nature of the threat.
+
+3: Contain the threat if possible to prevent further damage. This could involve disconnecting affected systems from the network or shutting down certain services.
+
+4. Be sure to turn in all documentation before the deadline, see the Example Documentation folder for a good template to follow
