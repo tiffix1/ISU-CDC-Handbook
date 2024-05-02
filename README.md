@@ -100,6 +100,50 @@ After registering, the network can be accessed at https://vcenter.iseage.org/ be
 
   ---
 ## Planning a Playbook and Basic Triaging
+
+Jumping into the the competition can be overwhelming, however, by having a plan before setting foot in the TLA you give your team quite an advantage. These competitions are made to be unpredictable and move quickly which often requires you to quickly shift priority when things start to go south. It is necessary to be able to multitask as well and be flexible to adapte to changes within the environment. Moreover, it is important to consider risk managagment in assessing the situation and thoroughly documenting any suspected attacks. Keep in mind there is not a definite way in which tasks are carried out nor should team members feel confined to a role, these are solely ideas to get you started.
+
+## CDC Approach
+
+1. **Set Up Active Directory (AD)**:
+   - Establish your network's centralized directory service to manage user accounts, permissions, and authentication. This forms the backbone of your network security infrastructure.
+
+2. **Harden Systems**:
+   - Apply basic hardening measures to all systems, including servers and endpoints, to reduce attack surfaces and minimize vulnerabilities. This includes patching systems, configuring strong passwords, and disabling unnecessary services.
+
+3. **Configure Firewall Rules**:
+   - Define firewall rules to control inbound and outbound traffic, enforcing security policies and segmentation between network segments. Prioritize rules based on security requirements and risk mitigation strategies.
+
+4. **Deploy Intrusion Detection Systems (IDS)**:
+   - Implement IDS solutions to monitor network traffic for suspicious activity and potential security breaches. Fine-tune detection rules and response mechanisms to effectively identify and mitigate security incidents.
+
+5. **Conduct Port Scanning and Enumeration**:
+   - Perform port scanning and service enumeration to identify open ports, running services, and potential vulnerabilities on network hosts. Utilize tools like Nmap to gather detailed information about the network environment.
+
+6. **Secure Remote Access (SSH and RDP)**:
+   - Configure secure communication protocols such as SSH for remote access to systems and devices. Implement strong encryption, authentication mechanisms, and access controls to prevent unauthorized access.
+
+7. **Establish Monitoring and Incident Response Procedures**:
+   - Develop comprehensive monitoring capabilities and incident response procedures to detect, analyze, and respond to security incidents in real-time. Leverage security information and event management (SIEM) tools for centralized log management and threat detection.
+
+8. **Perform Regular Security Assessments**:
+   - Conduct periodic security assessments, vulnerability scans, and penetration tests to evaluate the effectiveness of security controls and identify potential weaknesses. Address identified issues promptly to maintain a robust security posture.
+
+9. **Checking Logs**:
+   - Consistently check logs on vital componenet such as the security section within event viewer. In doing so you can quickly address any  unauthorized logins or any sudden changes to any security settings within your systems.
+
+### Team Roles
+It is important to establish roles within your team to tackle different tasks, moreover it is cruicial to establish a reliable line of communication to report incident and divide up any responsibilities. Here is one way responsibilities could be divided up.
+
+Student 1: Active Directory Administrator
+Student 2: Firewall Architect
+Student 3: Database Administrator
+Student 4: Anomolies and Documentation
+Student 5: Incident Response 
+Student 6: Vulnerability Hunter
+Student 7: Analyst for Linux systems
+Student 8: Analyst for Windows Systems
+
 ## Creating a Practice Network
 Practice makes perfect and nothing beats having your very own network to test out what you'll learn. Before you get started you will need to download a few applications; a hyper visor and a few ISO files. A hypervisor is the platform that will run your virtualized network enviroment and an ISO file is often the format of choice for distributing operating systems. Below are some resources to get started, check with your school as some insitutions offer vmware or windows license to students for free. For this example we will be using Vmware Workstation since the competition uses Vmware products to host the virtual network. Simply navigate to the download link, and follow the wizard for installation. This tutorial will focus on teaching you how to get your network up and running.
 1. Install hypervisor of your choice
@@ -168,7 +212,7 @@ Open Workstation and navigate to "File > New Virtual Machine" or click "ctrl + N
 ---
 
 ## Scanning for Vulnerabilities
-There a variety tools available for you to use that can streamline the process of hunting for vulnerabilities.
+There a variety tools available for you to use that can streamline the process of hunting for vulnerabilities. The earlier this is implemented the better as it will thoroughly assess what your system security needs.
 
 ### Nessus
 Nessus is an enterprise tool that is quite reputable and is widely used within the industry. Nessus offers a free 30 day trial on their popular vulnerability scanner. It's limited compared to the commercial version but still provides valuable vulnerability scanning capabilities. Visit https://www.tenable.com/downloads/nessus?loginAttempted=true to download you have the option to choose from a preformatted virtual machine file or download the file directly to the host.
@@ -204,8 +248,6 @@ sudo /etc/init.d/nessusd start
 7. Log in to the Nessus web interface using the admin account you just created.
 8.  Click "Scans" in the left-hand menu, then click "New Scan" to create a new scan.
 9.   Configure the scan settings as needed, then click "Launch Scan" to begin the vulnerability assessment.
-
-
 
 
 ### OpenVAS
@@ -334,8 +376,7 @@ You will be prompt to enter your current password followed by being asked to ent
 ---
 ## Configuring Active Directory
 
-Using powershell to join hosts to the domain can be efficiently especially for tasks that involve automation and scripting. PowerShell provides cmdlets specifically designed for managing Active Directory and performing domain join operations. This provides a more straightforward approach in setting up the AD server however may vary slightly depending on 
-Here's how you can set up AD and join hosts to the domain using PowerShell:
+Active direcotry is often overwhelming blue teamers working with it for the first time. It establishes a level of organization among users and roles to manage permissions and publish policies users must abide to. Using powershell to join hosts to the domain can be efficient as it will automate a lot of the process for you. Here's how you can set up AD and join hosts to the domain using PowerShell:
 
 ### Setting up Active Directory:
 
@@ -409,7 +450,7 @@ Within the Active directory folder of the github repo there are exists a Powersh
 <img src="https://i.imgur.com/3y85x0M.png">
 
 4. From the start menu search Windows Powershell ISE, right click and run as administrator
-
+ 
 5. Click File > Open > create_ous.ps1 and run the file
 <img src="https://activedirectorypro.com/wp-content/uploads/2022/09/create-ous-powershell-1.webp">
 
@@ -508,7 +549,7 @@ Uncomment by removing the # at the beginning of the line if necessary.
   ```powershell
   Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
   ```
-  - Note the sshd_config file will only generate once the service is started
+  - Note the `sshd_config` file will only generate once the service is started
 4. Type the following command to start the service:
    ```powershell
    Start-Service sshd
@@ -518,9 +559,10 @@ Uncomment by removing the # at the beginning of the line if necessary.
  <br>
  
 ## Configuring a Firewall
+A firewall is a fundamental component of network security that acts as a barrier between a trusted internal network and untrusted external networks, such as the internet. Its primary purpose is to monitor and control incoming and outgoing network traffic based on predetermined security rules. Pfsense is a free and open-source resource for you to use that is quite user-friendly and versatile when considering the CDC
 
 ### Pfsense Installation
-1. Use the tutorial from [Creating a Practice Network](#creating-a-practice-network), to a create a dedicated virtual machine for Pfsense; the default values should be adequate before you click finish click Customize Hardware
+1. Use the tutorial from [Creating a Practice Network](#creating-a-practice-network), to a create a dedicated virtual machine for Pfsense; the default values should be adequate. Before you click finish click `Customize Hardware`
 
 2. Click memory and increase to 2 GB 
    
@@ -655,12 +697,31 @@ Requirements:
 <br>
 
 ## Configuring an Intrusion Detection System
+An intrusion detection system allows you to configure a set of rules to be alerted of potentially malicious activity. Moreover it can help you catch an attacker before they are able to progress further within your network.
 
 ### Snort
-1. Follow the tutorial for [configuring a firewall](#configuring-a-firewall) to set up pfsense
-2. Navigate to System > Package Manager > Available Packages
-3. Type `snort` in the search box and click install
-4. Click confirm and wait for the package to install
+1. Follow the tutorial for [configuring a firewall](#configuring-a-firewall) to set up pfsense. Feel free to read the SNort official documentation https://docs.netgate.com/pfsense/en/latest/packages/snort/setup.html
+   
+2. Navigate to `System` > `Package Manager` > `Available Packages`
+
+3. Type `snort` in the search box and click `install`
+<img src="https://i.imgur.com/PMVD9H8.png">
+
+4. Click `confirm` and wait for the package to install
+
+5. Navigate to `Services` > `Snort` > `Updates`
+<img src="https://i.imgur.com/q6c9p9t.png">
+
+6. Click `Update Rules` to download latest rule set for Snort
+ 
+7. Navigate to the `Snort Interfaces` tab in the Snort settings.
+<img src="https://i.imgur.com/JeGSp4g.png">
+
+8. Click `Add` and enable Snort on the desired interface then select `save` you may select optional blocking and alerting features if desired
+<img src="https://i.imgur.com/1U9haT5.png">
+
+9. It may take a second to load but click the play button on `Snort Status` to activate the rules
+<img src="https://i.imgur.com/ueeF3LW.png">
 
 
 
