@@ -460,7 +460,76 @@ Within the Active directory folder of the github repo there are exists a Powersh
    Get-ADUser -filter * -Properties * | Select name, department, title | out-gridview
   ````
 ### Applying Group Policies
+
+
+1. Password Policy: to set password complexity, length, and expiration requirements.
+  ```powershell
+   Set-ADDefaultDomainPasswordPolicy
+  ```
+
+2.Account Lockout Policy:to configure account lockout thresholds and duration.
+  ```powershell
+  Set-ADDefaultDomainPasswordPolicy 
+  ```
+3. Audit Policy:to enable auditing of various events, such as logon/logoff, account management, and policy changes.
+  ```powershell
+    Set-GPRegistryValue 
+  ```
+
+4. User Rights Assignment:to manage user and group permissions for specific user rights (e.g., "Log on as a service").
+  ```powershell
+   Set-GPPermission 
+  ```
+
+6. Security Options:to configure various security options, such as:
+    - Require administrator approval for elevation
+    - Disable guest account
+    - Enable UAC (User Account Control)
+  ```powershell
+   Set-GPRegistryValue 
+  ```
+
+7. Windows Defender Firewall:to create and manage firewall rules.
+  ```powershell
+   Set-NetFirewallRule 
+  ```
+
+8. BitLocker Drive Encryption: to enable and configure BitLocker encryption settings.
+  ```powershell
+   Set-BitLockerVolume
+  ```
+
+9. AppLocker:to create and manage application control policies.
+  ```powershell
+   Set-AppLockerPolicy 
+  ```
+
+10. Internet Explorer Security:to configure security settings for Internet Explorer, such as:
+    - Enable Enhanced Protected Mode
+    - Disable Internet Explorer file downloads
+  ```powershell
+   Set-GPRegistryValue 
+  ```
+
+11. Windows Update:to configure automatic Windows Update settings.
+  ```powershell
+    Set-GPRegistryValue 
+  ```
+
+12. Event Log Settings:to configure event log settings, such as maximum log size and retention policy.
+  ```powershell
+    Set-GPRegistryValue 
+  ```
+
+14. Remote Desktop Services:to configure security settings for Remote Desktop Services, such as:
+    - Require NLA (Network Level Authentication)
+    - Disable Remote Assistance
+    ```powershell
+    Set-GPRegistryValue 
+    ```
+
 ----
+
 ## Enabling SSH on port 22
 SSH other wise known as the secure shell allows a user a secure way to remotely access a system and is often required for linux host within the CDC
 
@@ -908,17 +977,11 @@ sudo apt-get install wireshark
 5. You can view more information of the sender and receiver as well as the raw packet itself by double clicking the entry
    <img src="blob:https://imgur.com/8d7c31ba-ead1-4051-821e-4ac3bf390890">
 
-Here are some examples of suspcious activity:
+Here's an example of suspcious activity:
 
 **Flood of ARP Request**
  <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*ZJaf1LYXoXq-Y5uQXSkoCQ.png">
 
-**WannaCry attempting SMB exploit**
- <img src="https://www.researchgate.net/publication/332144343/figure/fig3/AS:743190172823557@1554201753939/WannaCry-internal-network-traffic-attempting-the-SMB-exploit.jpg">
-
- **Malicious DNS Requests**
- <img src="https://www.researchgate.net/publication/332028948/figure/fig2/AS:741075601858561@1553697600808/A-malicious-DNS-request-as-captured-by-the-Wireshark-on-the-REMnux-VM.jpg">
- 
 ## Analyzing logs
 In the context of system security, maintaining detailed logs is beneficial for identifying unsuccessful or potentially dubious login attempts, as well as unauthorized activities by users or processes. This enables system administrators to spot exploited weaknesses and reconstruct attack scenarios for future security updates and historical incident documentation.
 ### Understanding Windows Event Viewer
@@ -926,25 +989,33 @@ In the context of system security, maintaining detailed logs is beneficial for i
 <img src="https://i.imgur.com/5CwB4fi.png">
 
 2. The `Overview and Summary` page, provides a quick look at recent logs. Use the left toolbar to sort by log type and the right one to create custom views and filters for specific logs.
+
 <img src="https://i.imgur.com/URwalg5.png">
 
 3. Navigate to security events 
+
 <img src="https://i.imgur.com/bMwKoaO.png">
 
 4. In this example we are gonna filter for specific event regarding user logons. You can find other task IDs relevant to security at this [link](https://andreafortuna.org/2019/06/12/windows-security-event-logs-my-own-cheatsheet/)
+
 <img src="https://i.imgur.com/BCkHCVG.png">
 
 5. We are gonna filter this event further and focus on auditing specifically administrator logons 
+
 <img src="https://i.imgur.com/BCkHCVG.png">
 
 6.Within this result we see and unfamiliar IP address of origin as well as that they used NTLM to authenticate themselves within the system. The NTLM protocol is stores password within windows which introduces a security threat. Moreover, it has been replaced by Kerberos a more reliable solution that utilizes a centralized logon server
+
 <img src="https://i.imgur.com/Wc4HYQE.png">
+ <br>
+
 
 ## Reporting
-1: Identify the security threat or incident. This could be an unauthorized access, data breach, malware attack, or any other form of cyber threat.
 
-2: Document all relevant information about the incident. This includes the time and date of the incident, the nature of the threat, the systems affected, and any potential data that may have been compromised, as well as screenshots and diagrams. If you do not fully understand the details of the attack, describe to the best of your abilities the nature of the threat.
+1. Identify the security threat or incident. This could be an unauthorized access, data breach, malware attack, or any other form of cyber threat.
 
-3: Contain the threat if possible to prevent further damage. This could involve disconnecting affected systems from the network or shutting down certain services.
+2. Document all relevant information about the incident. This includes the time and date of the incident, the nature of the threat, the systems affected, and any potential data that may have been compromised, as well as screenshots and diagrams. If you do not fully understand the details of the attack, describe to the best of your abilities the nature of the threat.
+
+3. Contain the threat if possible to prevent further damage. This could involve disconnecting affected systems from the network or shutting down certain services.
 
 4. Be sure to turn in all documentation before the deadline, see the Example Documentation folder for a good template to follow
