@@ -460,28 +460,46 @@ Within the Active directory folder of the github repo there are exists a Powersh
    Get-ADUser -filter * -Properties * | Select name, department, title | out-gridview
   ````
 ### Applying Group Policies
+**Be sure to import the following first:**
 
+1. Connect to the Active Directory PowerShell module:
+```powershell
+Import-Module ActiveDirectory
+```
+
+2. Create a new Group Policy Object (GPO):
+```powershell
+New-GPO -Name "Secure Settings"
+```
+
+3. Edit the GPO settings:
+```powershell
+$GPO = Get-GPO -Name "Secure Settings"
+Set-GPRegistryValue -Name "Secure Settings" -Key "HKLM\Software\Policies\Microsoft\Windows\System" -ValueName "EnableSmartScreen" -Type DWord -Value 1
+```
+
+**Optional Add-Ons:**
 
 1. Password Policy: to set password complexity, length, and expiration requirements.
   ```powershell
    Set-ADDefaultDomainPasswordPolicy
   ```
 
-2.Account Lockout Policy:to configure account lockout thresholds and duration.
+2.Account Lockout Policy: to configure account lockout thresholds and duration.
   ```powershell
   Set-ADDefaultDomainPasswordPolicy 
   ```
-3. Audit Policy:to enable auditing of various events, such as logon/logoff, account management, and policy changes.
+3. Audit Policy: to enable auditing of various events, such as logon/logoff, account management, and policy changes.
   ```powershell
     Set-GPRegistryValue 
   ```
 
-4. User Rights Assignment:to manage user and group permissions for specific user rights (e.g., "Log on as a service").
+4. User Rights Assignment: to manage user and group permissions for specific user rights (e.g., "Log on as a service").
   ```powershell
    Set-GPPermission 
   ```
 
-6. Security Options:to configure various security options, such as:
+6. Security Options: to configure various security options, such as:
     - Require administrator approval for elevation
     - Disable guest account
     - Enable UAC (User Account Control)
@@ -489,7 +507,7 @@ Within the Active directory folder of the github repo there are exists a Powersh
    Set-GPRegistryValue 
   ```
 
-7. Windows Defender Firewall:to create and manage firewall rules.
+7. Windows Defender Firewall: to create and manage firewall rules.
   ```powershell
    Set-NetFirewallRule 
   ```
@@ -499,12 +517,12 @@ Within the Active directory folder of the github repo there are exists a Powersh
    Set-BitLockerVolume
   ```
 
-9. AppLocker:to create and manage application control policies.
+9. AppLocker: to create and manage application control policies.
   ```powershell
    Set-AppLockerPolicy 
   ```
 
-10. Internet Explorer Security:to configure security settings for Internet Explorer, such as:
+10. Internet Explorer Security: to configure security settings for Internet Explorer, such as:
     - Enable Enhanced Protected Mode
     - Disable Internet Explorer file downloads
   ```powershell
@@ -521,7 +539,7 @@ Within the Active directory folder of the github repo there are exists a Powersh
     Set-GPRegistryValue 
   ```
 
-14. Remote Desktop Services:to configure security settings for Remote Desktop Services, such as:
+14. Remote Desktop Services: to configure security settings for Remote Desktop Services, such as:
     - Require NLA (Network Level Authentication)
     - Disable Remote Assistance
     ```powershell
