@@ -26,8 +26,8 @@
 - [Attack Phase of the Competition](#attack-phase-of-the-competition)
   - [Signs of an Attack](#signs-of-an-attack)
   - [Sniffing Network Traffic](#sniffing-network-traffic)
-  - [Understanding Windows Event Viewer](#understanding-windows-event-viewer)
   - [Analyzing logs](#analyzing-logs)
+  - [Understanding Windows Event Viewer](#understanding-windows-event-viewer)
   - [Identifying Malicious Processes](#identifying-malicious-processes)
   - [Isolating an Affected Machine](#isolating-an-affected-machine)
   <br>
@@ -884,10 +884,44 @@ net user guest /active no
 # Attack Phase of the Competition
 ## Signs of an Attack
 ## Sniffing Network Traffic
-## Understanding Windows Event Viewer
+conducting thorough traffic analysis, often referred to as “sniffing,” is crucial for detecting anomalous or potentially malicious data packets. This aids in identifying unauthorized access attempts or suspicious activities within the network. It empowers network administrators to uncover exploited network vulnerabilities and reconstruct cyber-attack scenarios for future security enhancements and historical incident analysis.
+
+### Wireshark
+
+**Download Windows**:
+Navigate to https://www.wireshark.org/download.html and download the installer
+
+**Download Linux**:
+```bash
+sudo apt-get install wireshark
+```
+
+1. Open the application and click through the steps within the wizard to install the application on your machine
+2. From the wireshark welcome page, click the interface that your hosts reside on.
+3. Utlize display filters to sniff for traffic by ip address or by service
+  <img src="https://i.imgur.com/xAZwCgT.png">
+
+4. Review the captured packets for unusual patterns or anomalies. A ping request may be considered suspicious if coming from an unknown IP
+   <img src="https://i.imgur.com/bM2asWh.png">
+   
+5. You can view more information of the sender and receiver as well as the raw packet itself by double clicking the entry
+   <img src="blob:https://imgur.com/8d7c31ba-ead1-4051-821e-4ac3bf390890">
+
+Here are some examples of suspcious activity:
+
+**Flood of ARP Request**
+ <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*ZJaf1LYXoXq-Y5uQXSkoCQ.png">
+
+**WannaCry attempting SMB exploit**
+ <img src="https://www.researchgate.net/publication/332144343/figure/fig3/AS:743190172823557@1554201753939/WannaCry-internal-network-traffic-attempting-the-SMB-exploit.jpg">
+
+ **Malicious DNS Requests**
+ <img src="https://www.researchgate.net/publication/332028948/figure/fig2/AS:741075601858561@1553697600808/A-malicious-DNS-request-as-captured-by-the-Wireshark-on-the-REMnux-VM.jpg">
+ 
 ## Analyzing logs
-## Identifying Malicious Processes
-## Isolating an Affected Machine
+In the context of system security, maintaining detailed logs is beneficial for identifying unsuccessful or potentially dubious login attempts, as well as unauthorized activities by users or processes. This enables system administrators to spot exploited weaknesses and reconstruct attack scenarios for future security updates and historical incident documentation.
+## Understanding Windows Event Viewer
+
 
 
 
